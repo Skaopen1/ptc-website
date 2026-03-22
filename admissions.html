@@ -4,11 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admissions — PTC Pilot Training Center</title>
-  <meta name="description" content="How to enroll at PTC — domestic and international student admissions, TSA AFSP requirements, and getting started." />
+  <meta name="description" content="Start your aviation journey at PTC. Separate admissions guides for domestic and international students — choose your path and find out how to enroll." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .path-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--gray-light);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .path-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .path-card-img {
+      height: 240px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .path-card-body {
+      padding: 2.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .path-flag {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .path-card h3 {
+      color: var(--navy);
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .path-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .path-bullets {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+    .path-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .path-bullets li:last-child { border-bottom: none; }
+    .path-bullets li::before {
+      content: '→';
+      color: var(--sky);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .path-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .path-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -16,7 +87,7 @@
   <nav class="navbar scrolled">
     <div class="container navbar-inner">
       <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
-                        <ul class="navbar-menu">
+      <ul class="navbar-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="why-fly.html">Why Fly?</a></li>
         <li><a href="licenses.html">Licenses</a></li>
@@ -24,7 +95,7 @@
         <li><a href="fleet.html">Fleet</a></li>
         <li><a href="tuition.html">Tuition</a></li>
         <li><a href="financing.html">Financing</a></li>
-        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="admissions.html" class="active">Admissions</a></li>
         <li><a href="international.html">International</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
@@ -33,164 +104,145 @@
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
+  <!-- HERO -->
   <section class="page-hero">
     <div class="container">
       <span class="label">Join PTC</span>
       <h1>Admissions</h1>
-      <p>Starting your aviation journey is simpler than you think. Here's exactly how to get started at PTC — whether you're local or coming from abroad.</p>
+      <p>The enrollment process at PTC depends on where you're from. Choose your path below and we'll walk you through every step.</p>
     </div>
   </section>
 
-  <!-- DOMESTIC ADMISSIONS -->
+  <!-- TWO PATH CARDS -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="label">For US Students</span>
-        <h2>Domestic Enrollment Process</h2>
-        <p>Five simple steps from inquiry to first flight.</p>
-      </div>
-      <div class="steps-list">
-        <div class="step-item">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h4>Reach Out &amp; Schedule a Tour</h4>
-            <p>Contact PTC via phone, email, or our contact form. We'll invite you to Brackett Airport to meet the team, see the aircraft, and tour the facility. No commitment required.</p>
+      <div class="path-grid">
+
+        <!-- DOMESTIC -->
+        <div class="path-card">
+          <img class="path-card-img" src="https://images.unsplash.com/photo-1559628233-100c798642b4?w=900&q=80" alt="Domestic Student Training" />
+          <div class="path-card-body">
+            <div class="path-flag">🇺🇸</div>
+            <h3>Domestic Students</h3>
+            <p>US citizens and permanent residents. Straightforward enrollment — no visa required, no TSA security clearance. Choose Part 141 or Part 61 and start flying.</p>
+            <ul class="path-bullets">
+              <li>US citizens and green card holders</li>
+              <li>Part 141 or Part 61 — your choice</li>
+              <li>No visa or TSA screening required</li>
+              <li>FAA Medical Certificate required</li>
+              <li>Start in as little as 1–2 weeks</li>
+            </ul>
+            <a href="admissions-domestic.html" class="btn btn-primary" style="text-align:center; font-size:1rem; padding:1rem;">Domestic Enrollment Guide →</a>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h4>Book a Discovery Flight</h4>
-            <p>Before enrolling, take a discovery flight with a certified instructor. You'll take the controls over La Verne and get a feel for what training will be like. It's the best first step.</p>
+
+        <!-- INTERNATIONAL -->
+        <div class="path-card">
+          <img class="path-card-img" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900&q=80" alt="International Student Training" />
+          <div class="path-card-body">
+            <div class="path-flag">🌍</div>
+            <h3>International Students</h3>
+            <p>Non-US citizens coming from outside the United States. Requires M-1 student visa, TSA/FTSP clearance, and an I-20 from PTC. Plan for a 2–4 month process before arriving.</p>
+            <ul class="path-bullets">
+              <li>All non-US citizens and non-residents</li>
+              <li>Part 141 only (required for M-1 visa)</li>
+              <li>M-1 student visa + TSA/FTSP clearance required</li>
+              <li>I-20 issued by PTC upon acceptance</li>
+              <li>Plan 2–4 months before arriving in the US</li>
+            </ul>
+            <a href="admissions-international.html" class="btn btn-navy" style="text-align:center; font-size:1rem; padding:1rem; display:block;">International Enrollment Guide →</a>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h4>Choose Your Program</h4>
-            <p>Decide between Part 141 (structured, career-track) or Part 61 (flexible, personalized). Your instructor will help you pick the right fit based on your goals and availability.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h4>Obtain Your FAA Medical Certificate</h4>
-            <p>All student pilots need at least a 3rd Class FAA Medical Certificate from an Aviation Medical Examiner (AME). We can help connect you with one nearby.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">05</div>
-          <div class="step-content">
-            <h4>Enroll &amp; Begin Training</h4>
-            <p>Complete enrollment paperwork, get your student pilot certificate, set your schedule with your CFI, and start flying. Your aviation career begins here.</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- INTERNATIONAL STUDENTS -->
+  <!-- QUICK COMPARISON -->
   <section class="section section-gray">
     <div class="container">
       <div class="section-header">
-        <span class="label">For International Students</span>
-        <h2>International Admissions</h2>
-        <p>PTC's Part 141 program is TSA AFSP approved. We support international students every step of the way.</p>
+        <span class="label">At a Glance</span>
+        <h2>Domestic vs. International</h2>
+        <p>Not sure which path applies to you? Here's a quick comparison.</p>
       </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
-        <div>
-          <div class="steps-list">
-            <div class="step-item">
-              <div class="step-num">01</div>
-              <div class="step-content">
-                <h4>Contact PTC &amp; Get Acceptance Letter</h4>
-                <p>Reach out to us to confirm your interest and eligibility. We'll issue an official acceptance letter required for your TSA AFSP application.</p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">02</div>
-              <div class="step-content">
-                <h4>Apply via TSA AFSP Portal</h4>
-                <p>Submit your TSA Alien Flight Student Program application at <strong>flightschoolcandidates.gov</strong>. Pay the required TSA vetting fee and complete background check.</p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">03</div>
-              <div class="step-content">
-                <h4>Receive TSA Approval</h4>
-                <p>Wait for TSA clearance (typically 2–4 weeks). PTC will receive confirmation when you're cleared to begin training.</p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">04</div>
-              <div class="step-content">
-                <h4>Obtain US Visa (if applicable)</h4>
-                <p>For non-citizens needing a visa, PTC can provide the documentation required for an M-1 student visa application through your local US embassy or consulate.</p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">05</div>
-              <div class="step-content">
-                <h4>Arrive &amp; Begin Training</h4>
-                <p>Arrive at Brackett Airport, complete your FAA medical, enroll formally, and begin your Part 141 curriculum. Welcome to California and welcome to PTC!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="intl-requirements">
-            <h3>📋 TSA AFSP Requirements</h3>
-            <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 0.95rem;">The following documents and steps are required by the TSA for all non-US citizens seeking flight training in the United States:</p>
-            <ul>
-              <li>Valid passport from your country of citizenship</li>
-              <li>Acceptance letter from PTC (we provide this)</li>
-              <li>Completed TSA AFSP online application</li>
-              <li>TSA vetting fee payment (amount varies by training type)</li>
-              <li>Biometric fingerprinting at a designated location</li>
-              <li>Background check clearance from TSA (2–4 weeks)</li>
-              <li>US visa or entry authorization (if required for your nationality)</li>
-              <li>FAA Medical Certificate from a certified AME in the US</li>
-            </ul>
-          </div>
-          <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--navy); border-radius: var(--radius-lg); color: var(--white);">
-            <h4 style="color: var(--gold); margin-bottom: 0.75rem;">🌍 Countries We've Welcomed</h4>
-            <p style="color: rgba(255,255,255,0.75); font-size: 0.9rem; margin: 0;">We have helped students from Saudi Arabia, UAE, Jordan, Morocco, Egypt, Mexico, Brazil, Philippines, South Korea, and many more countries earn their FAA certificates at PTC.</p>
-          </div>
-        </div>
+      <div style="overflow:hidden; border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+          <thead>
+            <tr>
+              <th style="background:var(--navy); color:var(--white); font-family:var(--font-heading); font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:1rem 1.5rem; text-align:left;"></th>
+              <th style="background:var(--navy); color:var(--gold); font-family:var(--font-heading); font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:1rem 1.5rem; text-align:center;">🇺🇸 Domestic</th>
+              <th style="background:var(--navy); color:var(--gold); font-family:var(--font-heading); font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:1rem 1.5rem; text-align:center;">🌍 International</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); font-weight:600; color:var(--navy);">Visa Required</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center; color:#16a34a; font-weight:700;">✗ No</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center; color:#d97706; font-weight:700;">✓ M-1 Visa</td>
+            </tr>
+            <tr style="background:var(--off-white);">
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); font-weight:600; color:var(--navy);">TSA / FTSP Clearance</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center; color:#16a34a; font-weight:700;">✗ No</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center; color:#d97706; font-weight:700;">✓ Required</td>
+            </tr>
+            <tr>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); font-weight:600; color:var(--navy);">Available Programs</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center;">Part 141 <em>or</em> Part 61</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center;">Part 141 Only</td>
+            </tr>
+            <tr style="background:var(--off-white);">
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); font-weight:600; color:var(--navy);">Pre-Training Fees</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center;">~$75–$150 (medical)</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center;">~$990–$1,265</td>
+            </tr>
+            <tr>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); font-weight:600; color:var(--navy);">Time to Start Training</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center;">1–2 weeks</td>
+              <td style="padding:0.9rem 1.5rem; border-bottom:1px solid var(--gray-light); text-align:center;">2–4 months</td>
+            </tr>
+            <tr style="background:var(--off-white);">
+              <td style="padding:0.9rem 1.5rem; font-weight:600; color:var(--navy);">FAA Medical Required</td>
+              <td style="padding:0.9rem 1.5rem; text-align:center; color:#d97706; font-weight:700;">✓ Yes (both)</td>
+              <td style="padding:0.9rem 1.5rem; text-align:center; color:#d97706; font-weight:700;">✓ Yes (both)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- REQUIREMENTS OVERVIEW -->
+  <!-- ALSO SEE -->
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <span class="label">Prerequisites</span>
-        <h2>What You Need to Get Started</h2>
+        <span class="label">Also Helpful</span>
+        <h2>More Resources</h2>
       </div>
       <div class="features-grid">
         <div class="feature-block">
-          <div class="feature-icon">🎂</div>
-          <h4>Age Requirements</h4>
-          <p>Solo flight: minimum 16 years old. PPL certificate: minimum 17. Student pilots of any eligible age are welcome to begin ground training.</p>
+          <div class="feature-icon">🛂</div>
+          <h4>Visa &amp; TSA Guide</h4>
+          <p>Full deep-dive on M-1 visa requirements, TSA/FTSP process, costs, FAQ, and everything international students need.</p>
+          <a href="international.html" style="color:var(--sky); font-family:var(--font-heading); font-weight:700; font-size:0.85rem;">Read Guide →</a>
         </div>
         <div class="feature-block">
-          <div class="feature-icon">🏥</div>
-          <h4>Medical Certificate</h4>
-          <p>A 3rd Class FAA Medical Certificate is required. Issued by an Aviation Medical Examiner (AME). We can connect you with one near La Verne.</p>
+          <div class="feature-icon">💳</div>
+          <h4>Financing</h4>
+          <p>AOPA Finance, Pilot Finance, Sallie Mae — explore loan options that make training affordable.</p>
+          <a href="financing.html" style="color:var(--sky); font-family:var(--font-heading); font-weight:700; font-size:0.85rem;">View Financing Options →</a>
         </div>
         <div class="feature-block">
-          <div class="feature-icon">🗣️</div>
-          <h4>English Proficiency</h4>
-          <p>FAA requires all pilots to be able to read, speak, write, and understand English. Radio communication is conducted in English.</p>
+          <div class="feature-icon">📋</div>
+          <h4>Programs</h4>
+          <p>Compare Part 141 and Part 61 in detail — structure, hours, stage checks, and which is right for you.</p>
+          <a href="programs.html" style="color:var(--sky); font-family:var(--font-heading); font-weight:700; font-size:0.85rem;">Compare Programs →</a>
         </div>
         <div class="feature-block">
-          <div class="feature-icon">📚</div>
-          <h4>No Prior Experience</h4>
-          <p>Zero flight hours? Perfect. We start from the very beginning. All you need is the passion to fly — we'll handle the rest.</p>
+          <div class="feature-icon">💰</div>
+          <h4>Tuition &amp; Pricing</h4>
+          <p>Hourly rates, the $65K career package, and per-certificate cost estimates — fully transparent.</p>
+          <a href="tuition.html" style="color:var(--sky); font-family:var(--font-heading); font-weight:700; font-size:0.85rem;">View Tuition →</a>
         </div>
       </div>
     </div>
@@ -199,11 +251,11 @@
   <!-- CTA -->
   <section class="cta-banner">
     <div class="container">
-      <h2>Questions About Enrollment?</h2>
-      <p>We're happy to walk you through the process personally. Reach out and we'll respond within one business day.</p>
+      <h2>Not Sure Where to Start?</h2>
+      <p>Just reach out — we'll figure it out together and point you to the right path.</p>
       <div class="cta-buttons">
         <a href="contact.html" class="btn btn-primary">Contact Admissions</a>
-        <a href="programs.html" class="btn btn-secondary">View Programs</a>
+        <a href="contact.html" class="btn btn-secondary">Book a Discovery Flight</a>
       </div>
     </div>
   </section>
@@ -214,7 +266,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
-          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 certified flight training for local and international students.</p>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 flight training for local and international students.</p>
           <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
         </div>
         <div class="footer-col">
@@ -222,19 +274,19 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="programs.html">Programs</a></li>
-            <li><a href="fleet.html">Fleet</a></li>
-            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="financing.html">Financing</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h5>Programs</h5>
+          <h5>Admissions</h5>
           <ul>
-            <li><a href="programs.html">Part 141 Training</a></li>
-            <li><a href="programs.html">Part 61 Training</a></li>
-            <li><a href="programs.html">Private Pilot (PPL)</a></li>
-            <li><a href="programs.html">Instrument Rating</a></li>
-            <li><a href="programs.html">Commercial Pilot</a></li>
+            <li><a href="admissions.html">Admissions Overview</a></li>
+            <li><a href="admissions-domestic.html">Domestic Students</a></li>
+            <li><a href="admissions-international.html">International Students</a></li>
+            <li><a href="international.html">Visa &amp; TSA Guide</a></li>
           </ul>
         </div>
         <div class="footer-col">
