@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financing — PTC Pilot Training Center</title>
+  <meta name="description" content="Don't let cost ground your dreams. PTC partners with leading aviation lenders to help you finance your flight training. Explore AOPA Finance, Pilot Finance, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .lender-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--gray-light);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .lender-card:hover {
+      border-color: var(--sky);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+    }
+    .lender-card.featured {
+      border-color: var(--gold);
+    }
+    .lender-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid var(--gray-light);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .lender-logo-box {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      flex-shrink: 0;
+    }
+    .lender-name {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .lender-tagline {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .lender-badge {
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+    }
+    .lender-body {
+      padding: 1.75rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .lender-body p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .lender-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .lender-spec {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+    }
+    .lender-spec-label {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.2rem;
+    }
+    .lender-spec-val {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.9rem;
+    }
+    .lender-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .lender-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .lender-features li::before {
+      content: '✓';
+      color: var(--sky);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .lender-footer {
+      padding: 1.25rem 2rem 2rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .lender-footer .btn {
+      flex: 1;
+      text-align: center;
+    }
+    .lenders-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    /* FAQ accordion look */
+    .finance-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .faq-row {
+      border-bottom: 1px solid var(--gray-light);
+      padding: 1.25rem 0;
+    }
+    .faq-row:first-child { border-top: 1px solid var(--gray-light); }
+    .faq-q {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .faq-q::before { content: 'Q'; color: var(--gold); flex-shrink: 0; }
+    .faq-a { color: var(--gray); font-size: 0.95rem; line-height: 1.7; padding-left: 1.5rem; margin: 0; }
+
+    /* Steps */
+    .finance-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      counter-reset: step-counter;
+    }
+    .finance-step {
+      text-align: center;
+      position: relative;
+    }
+    .finance-step::after {
+      content: '→';
+      position: absolute;
+      right: -0.85rem;
+      top: 1.1rem;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    .finance-step:last-child::after { display: none; }
+    .step-circle {
+      width: 56px;
+      height: 56px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+    .finance-step h4 {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .finance-step p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.8rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .lenders-grid { grid-template-columns: 1fr; }
+      .finance-steps { grid-template-columns: repeat(2, 1fr); }
+      .finance-step::after { display: none; }
+    }
+    @media (max-width: 480px) {
+      .finance-steps { grid-template-columns: 1fr; }
+      .lender-specs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li><a href="licenses.html">Licenses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="fleet.html">Fleet</a></li>
+        <li><a href="tuition.html">Tuition</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="international.html">International</a></li>
+        <li><a href="financing.html" class="active">Financing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">💳 Flight Training Loans</span>
+      <h1>Don't Let Cost Ground Your Dream</h1>
+      <p>Flight training is an investment in your future. Several specialized lenders exist specifically to help aspiring pilots finance their path to certification — with no collateral, no large down payment, and terms built around how pilots actually train.</p>
+    </div>
+  </section>
+
+  <!-- QUICK STAT BAR -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">$0</span>
+          <span class="stat-label">Down Payment Required (AOPA)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">$100K</span>
+          <span class="stat-label">Max Loan (AOPA Finance)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">$65K</span>
+          <span class="stat-label">PTC Career Package Cost</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">~$500</span>
+          <span class="stat-label">Est. Monthly Payment*</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LENDERS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Trusted Lenders</span>
+        <h2>Aviation Financing Partners</h2>
+        <p>These lenders specialize in flight training — they understand the industry, the process, and the return on your investment.</p>
+      </div>
+
+      <div class="lenders-grid">
+
+        <!-- AOPA Finance -->
+        <div class="lender-card featured">
+          <div class="lender-header">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <div class="lender-logo-box" style="background:#003f7f; color:white; font-weight:900; font-family:var(--font-heading); font-size:1rem;">AOPA</div>
+              <div>
+                <div class="lender-name">AOPA Finance</div>
+                <div class="lender-tagline">Aircraft Owners and Pilots Association</div>
+              </div>
+            </div>
+            <span class="lender-badge">Most Popular</span>
+          </div>
+          <div class="lender-body">
+            <p>AOPA Finance is the gold standard in flight training loans. Backed by the world's largest aviation organization, their Flight Training Finance program offers a revolving line of credit you can use at any FAA-certified school — including PTC. No down payment, no collateral, no excessive paperwork.</p>
+            <div class="lender-specs">
+              <div class="lender-spec">
+                <div class="lender-spec-label">Max Loan Amount</div>
+                <div class="lender-spec-val">Up to $100,000</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Down Payment</div>
+                <div class="lender-spec-val">$0 required</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Loan Type</div>
+                <div class="lender-spec-val">Line of credit</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Minimum Amount</div>
+                <div class="lender-spec-val">None</div>
+              </div>
+            </div>
+            <ul class="lender-features">
+              <li>Use at any FAA-certified school — including PTC</li>
+              <li>Draw funds as you need them (revolving credit line)</li>
+              <li>No collateral required</li>
+              <li>Flexible terms — pay as you train</li>
+              <li>Trusted by thousands of pilots since 1989</li>
+              <li>US citizens and permanent residents eligible</li>
+            </ul>
+          </div>
+          <div class="lender-footer">
+            <a href="https://finance.aopa.org/flight-training-finance" target="_blank" rel="noopener" class="btn btn-navy">Learn More at AOPA →</a>
+            <a href="contact.html" class="btn btn-outline">Ask PTC</a>
+          </div>
+        </div>
+
+        <!-- Pilot Finance / Flight Training Finance -->
+        <div class="lender-card">
+          <div class="lender-header">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <div class="lender-logo-box" style="background:var(--off-white);">✈️</div>
+              <div>
+                <div class="lender-name">Flight Training Finance</div>
+                <div class="lender-tagline">pilotfinance.com — Pilot-Owned Lender</div>
+              </div>
+            </div>
+          </div>
+          <div class="lender-body">
+            <p>Flight Training Finance (pilotfinance.com) is a pilot-owned company built specifically for part-time and full-time flight students. They partner directly with flight schools to streamline the loan process and offer flexible payment options designed around real training schedules — not bank calendars.</p>
+            <div class="lender-specs">
+              <div class="lender-spec">
+                <div class="lender-spec-label">Specialty</div>
+                <div class="lender-spec-val">Part-time students</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Loan Type</div>
+                <div class="lender-spec-val">Training installments</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Who It's For</div>
+                <div class="lender-spec-val">PPL through CPL</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">School Partnership</div>
+                <div class="lender-spec-val">Direct school payouts</div>
+              </div>
+            </div>
+            <ul class="lender-features">
+              <li>Pilot-owned and operated — they understand your journey</li>
+              <li>Flexible repayment aligned with your training pace</li>
+              <li>Covers PPL, instrument, commercial programs</li>
+              <li>Online application — quick and straightforward</li>
+              <li>Works with part-time students (not just full-time)</li>
+              <li>Funds paid directly to your flight school</li>
+            </ul>
+          </div>
+          <div class="lender-footer">
+            <a href="https://www.pilotfinance.com/flight-students/" target="_blank" rel="noopener" class="btn btn-navy">Apply at PilotFinance.com →</a>
+            <a href="contact.html" class="btn btn-outline">Ask PTC</a>
+          </div>
+        </div>
+
+        <!-- Sallie Mae / General Student Loans -->
+        <div class="lender-card">
+          <div class="lender-header">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <div class="lender-logo-box" style="background:#f0f4ff; font-size:1.5rem;">🏦</div>
+              <div>
+                <div class="lender-name">Sallie Mae Career Training</div>
+                <div class="lender-tagline">salliemae.com — Career & Vocational Loans</div>
+              </div>
+            </div>
+          </div>
+          <div class="lender-body">
+            <p>Sallie Mae's Career Training Smart Option Loan is available for vocational programs — including FAA-certified flight schools. It's a solid option for students who don't qualify for aviation-specific loans or need to supplement other financing. Check eligibility for your program type.</p>
+            <div class="lender-specs">
+              <div class="lender-spec">
+                <div class="lender-spec-label">Loan Type</div>
+                <div class="lender-spec-val">Private student loan</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Program Coverage</div>
+                <div class="lender-spec-val">Vocational/career</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Rates</div>
+                <div class="lender-spec-val">Fixed &amp; variable</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Repayment</div>
+                <div class="lender-spec-val">In-school options</div>
+              </div>
+            </div>
+            <ul class="lender-features">
+              <li>Available for FAA-certified vocational programs</li>
+              <li>Fixed and variable interest rate options</li>
+              <li>Multiple repayment plan options during training</li>
+              <li>Co-signer may improve approval odds</li>
+              <li>Well-known, established lender</li>
+            </ul>
+          </div>
+          <div class="lender-footer">
+            <a href="https://www.salliemae.com/student-loans/career-training-loans/" target="_blank" rel="noopener" class="btn btn-navy">Learn More at Sallie Mae →</a>
+            <a href="contact.html" class="btn btn-outline">Ask PTC</a>
+          </div>
+        </div>
+
+        <!-- Pay-As-You-Go / PTC Option -->
+        <div class="lender-card" style="border-color: var(--navy);">
+          <div class="lender-header" style="background: var(--navy);">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <div class="lender-logo-box" style="background: rgba(255,255,255,0.1); font-size:1.5rem;">🛩️</div>
+              <div>
+                <div class="lender-name" style="color:var(--white);">PTC Pay-As-You-Go</div>
+                <div class="lender-tagline" style="color:rgba(255,255,255,0.6);">No loan needed — train on your schedule</div>
+              </div>
+            </div>
+            <span class="lender-badge">No Interest</span>
+          </div>
+          <div class="lender-body">
+            <p>Not ready for a loan? No problem. PTC allows you to train on a completely pay-as-you-go basis — pay per flight hour, no upfront commitment, no enrollment fees. Many students train on weekends and pay as they go, making aviation accessible without taking on debt.</p>
+            <div class="lender-specs">
+              <div class="lender-spec">
+                <div class="lender-spec-label">Aircraft + Instructor</div>
+                <div class="lender-spec-val">$240 / hr</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Aircraft Solo</div>
+                <div class="lender-spec-val">$170 / hr</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Upfront Fee</div>
+                <div class="lender-spec-val">None</div>
+              </div>
+              <div class="lender-spec">
+                <div class="lender-spec-label">Interest</div>
+                <div class="lender-spec-val">None</div>
+              </div>
+            </div>
+            <ul class="lender-features">
+              <li>Zero interest — pay only for what you fly</li>
+              <li>No credit check required</li>
+              <li>Pause and resume training anytime</li>
+              <li>Great for part-time students and working professionals</li>
+              <li>Combine with a loan for larger chunks of training</li>
+            </ul>
+          </div>
+          <div class="lender-footer">
+            <a href="contact.html" class="btn btn-primary">Start Training Today →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Simple Process</span>
+        <h2>How to Finance Your Training</h2>
+        <p style="color:rgba(255,255,255,0.7)">Four steps from application to wheels up.</p>
+      </div>
+      <div class="finance-steps">
+        <div class="finance-step">
+          <div class="step-circle">01</div>
+          <h4>Choose a Lender</h4>
+          <p>Review the options above. AOPA Finance is best for most students. PilotFinance is great for part-timers.</p>
+        </div>
+        <div class="finance-step">
+          <div class="step-circle">02</div>
+          <h4>Apply Online</h4>
+          <p>Submit your application directly on the lender's website. Most decisions come back within a few days.</p>
+        </div>
+        <div class="finance-step">
+          <div class="step-circle">03</div>
+          <h4>Get Approved</h4>
+          <p>Once approved, funds are typically available immediately or disbursed directly to PTC on your behalf.</p>
+        </div>
+        <div class="finance-step">
+          <div class="step-circle">04</div>
+          <h4>Start Flying</h4>
+          <p>Enroll at PTC, begin your training, and work toward your certificate. Your future in aviation starts here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-gray">
+    <div class="container" style="max-width: 800px;">
+      <div class="section-header">
+        <span class="label">Common Questions</span>
+        <h2>Financing FAQ</h2>
+      </div>
+      <div class="finance-faq">
+        <div class="faq-row">
+          <div class="faq-q">Do I need good credit to get a flight training loan?</div>
+          <p class="faq-a">Most aviation lenders do perform a credit check. AOPA Finance and Pilot Finance are designed for aspiring pilots and are generally more flexible than traditional banks. Having a co-signer can improve your odds and your interest rate if your credit isn't perfect.</p>
+        </div>
+        <div class="faq-row">
+          <div class="faq-q">Can I finance just part of my training?</div>
+          <p class="faq-a">Yes. There are no minimums with most aviation lenders. You can finance just your PPL, or take a line of credit and draw only what you need as you progress. AOPA's revolving credit line is ideal for this — borrow what you need, when you need it.</p>
+        </div>
+        <div class="faq-row">
+          <div class="faq-q">Are international students eligible for financing?</div>
+          <p class="faq-a">Most US-based aviation lenders require US citizenship or permanent residency. International students on M-1 visas are generally not eligible for US loans. International students should plan to arrive with personal funding or explore financing options in their home country before coming to the US.</p>
+        </div>
+        <div class="faq-row">
+          <div class="faq-q">What's the typical monthly payment on a $65,000 loan?</div>
+          <p class="faq-a">At a 7–10% interest rate over 10 years, a $65,000 loan would cost approximately <strong>$450–$550/month</strong>. Once you're flying commercially as a first officer earning $80K+/year, that payment is very manageable. Think of it as an investment — not a debt.</p>
+        </div>
+        <div class="faq-row">
+          <div class="faq-q">Can I combine a loan with pay-as-you-go?</div>
+          <p class="faq-a">Absolutely. Many students use a loan to cover the bulk of training (like the $65K career package) and pay smaller incidentals — books, test fees, additional hours — out of pocket. Talk to PTC and your lender to structure the best plan for your situation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <div style="background: var(--off-white); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--gray-light);">
+        <h4 style="color: var(--navy); margin-bottom: 0.75rem;">⚖️ Disclaimer</h4>
+        <p style="color: var(--gray); font-size: 0.88rem; line-height: 1.8; margin: 0;">PTC Pilot Training Center is not a lender and does not provide financial advice. The lenders listed on this page are provided for informational purposes only. PTC does not receive referral fees or commissions from any lender. All loan terms, interest rates, and eligibility requirements are set by each lender and are subject to change. Monthly payment estimates are approximate and do not constitute a loan offer. Contact each lender directly for current terms and to determine your eligibility. *Monthly payment estimate based on a $65,000 loan at ~8% over 10 years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Take the First Step?</h2>
+      <p>Start with a $220 discovery flight — if you love it, we'll help you map out the training and financing plan that works for you.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Book a Discovery Flight</a>
+        <a href="tuition.html" class="btn btn-secondary">View Tuition</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 flight training for local and international students.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="why-fly.html">Why Fly?</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="fleet.html">Fleet</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="financing.html">Financing</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="international.html">International</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Lenders</h5>
+          <ul>
+            <li><a href="https://finance.aopa.org/flight-training-finance" target="_blank" rel="noopener">AOPA Finance ↗</a></li>
+            <li><a href="https://www.pilotfinance.com/flight-students/" target="_blank" rel="noopener">Pilot Finance ↗</a></li>
+            <li><a href="https://www.salliemae.com/student-loans/career-training-loans/" target="_blank" rel="noopener">Sallie Mae ↗</a></li>
+            <li><a href="tuition.html">PTC Pay-As-You-Go</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
