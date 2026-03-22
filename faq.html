@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — PTC Pilot Training Center</title>
+  <meta name="description" content="Answers to the most common questions about flight training at PTC — costs, programs, licensing, international students, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .faq-section { margin-bottom: 3rem; }
+    .faq-section-title {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--navy);
+      padding: 0.5rem 0 0.5rem 1rem;
+      border-left: 4px solid var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .faq-item:first-of-type { border-top: 1px solid var(--gray-light); }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.1rem 1rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: var(--off-white); }
+    .faq-chevron {
+      font-size: 0.75rem;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+      color: var(--gray);
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--navy); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 1rem;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding: 0 1rem 1.1rem; }
+    .faq-a p { color: var(--gray); font-size: 0.95rem; line-height: 1.75; margin: 0; }
+    .faq-a a { color: var(--sky); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li class="nav-has-dropdown">
+          <a href="programs.html">Programs <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Training</span>
+            <a href="programs.html"><span class="dropdown-icon">📋</span>Programs (141 &amp; 61)</a>
+            <a href="licenses.html"><span class="dropdown-icon">🎓</span>Licenses &amp; Ratings</a>
+            <a href="fleet.html"><span class="dropdown-icon">🛩️</span>Our Fleet</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="tuition.html">Pricing <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Investment</span>
+            <a href="tuition.html"><span class="dropdown-icon">💰</span>Tuition &amp; Pricing</a>
+            <a href="financing.html"><span class="dropdown-icon">💳</span>Financing Options</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="admissions.html">Admissions <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Enrollment</span>
+            <a href="admissions-domestic.html"><span class="dropdown-icon">🇺🇸</span>Domestic Students</a>
+            <a href="admissions-international.html"><span class="dropdown-icon">🌍</span>International Students</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-label">International Resources</span>
+            <a href="international.html"><span class="dropdown-icon">🛂</span>Visa &amp; TSA Guide</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="contact.html">Contact <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Get In Touch</span>
+            <a href="contact.html"><span class="dropdown-icon">✉️</span>Contact Us</a>
+            <a href="about.html"><span class="dropdown-icon">🏫</span>About PTC</a>
+            <a href="team.html"><span class="dropdown-icon">👨‍✈️</span>Our Team</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-label">Resources</span>
+            <a href="faq.html" class="active"><span class="dropdown-icon">❓</span>FAQ</a>
+            <a href="blog.html"><span class="dropdown-icon">📰</span>Blog</a>
+          </div>
+        </li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">Got Questions?</span>
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know about training at PTC — in one place.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:860px;">
+
+      <!-- GETTING STARTED -->
+      <div class="faq-section">
+        <div class="faq-section-title">✈️ Getting Started</div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do I need any experience to start flight training? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>None whatsoever. PTC accepts students with zero flight experience. Your very first lesson starts from scratch — preflight inspection, taxiing, takeoff, and basic flight maneuvers. Your instructor is with you every step of the way.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What is a discovery flight? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>A discovery flight is a short introductory flight where you take the controls of a Cessna 172N with a certified flight instructor beside you. PTC offers two options: a Hollywood Sign tour for $220 and a Catalina Island tour for $300. It's the best way to find out if flying is right for you before committing to a program.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How old do I have to be to start training? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>You can begin ground school at any age. The FAA requires you to be at least 16 years old to fly solo and at least 17 to earn your Private Pilot License. There is no upper age limit — pilots of all ages train and fly successfully.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What medical certificate do I need? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>For a Private Pilot License you need a 3rd Class FAA Medical Certificate, issued by an FAA Aviation Medical Examiner (AME). For a Commercial License you'll need a 2nd Class. PTC can connect you with an AME near La Verne. Most healthy people have no issues passing the exam.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Can I fly if I wear glasses or contacts? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Yes! Thousands of pilots wear corrective lenses. As long as your corrected vision meets FAA standards for the medical class you're applying for, you can fly. Your medical certificate will note "must wear corrective lenses."</p></div>
+        </div>
+      </div>
+
+      <!-- PROGRAMS & TRAINING -->
+      <div class="faq-section">
+        <div class="faq-section-title">📋 Programs &amp; Training</div>
+
+        <div class="faq-item">
+          <button class="faq-q">What's the difference between Part 141 and Part 61? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Part 141 uses an FAA-approved structured syllabus with stage checks at defined milestones, and allows reduced minimum flight hours. It's best for full-time, career-track students and is required for international students on M-1 visas. Part 61 is more flexible with no fixed syllabus — ideal for part-time students, working adults, or anyone who needs to train around a busy schedule. Both lead to the same FAA certificates.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How long does it take to get a Private Pilot License? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Most students complete their PPL in 3–5 months when training 2–3 days per week. Full-time students training 5 days a week have completed it in as little as 6–8 weeks. The FAA minimum is 35 hours (Part 141) or 40 hours (Part 61), though the national average is around 60–70 hours.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What aircraft will I train in? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>All primary training at PTC is conducted in our fleet of six Cessna 172N Skyhawks — the world's most-produced training aircraft. The 172N is powered by a 150HP Lycoming O-320 engine with classic steam gauges, building foundational piloting skills that transfer to any aircraft.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What licenses can I earn at PTC? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>PTC offers training for six FAA certificates and ratings: Private Pilot License (PPL), Instrument Rating (IFR), Commercial Pilot License (CPL), Multi-Engine Rating, Flight Instructor Certificate (CFI), and Instrument Flight Instructor Certificate (CFII). See our <a href="licenses.html">Licenses page</a> for full details.</p></div>
+        </div>
+      </div>
+
+      <!-- COST & FINANCING -->
+      <div class="faq-section">
+        <div class="faq-section-title">💰 Cost &amp; Financing</div>
+
+        <div class="faq-item">
+          <button class="faq-q">How much does a Private Pilot License cost at PTC? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Based on our hourly rates ($240/hr dual, $170/hr solo), a PPL typically costs $15,000–$22,000 depending on the hours needed. PTC also offers a $65,000 all-inclusive career package covering PPL + Instrument Rating + Commercial Pilot License. See our <a href="tuition.html">Tuition page</a> for full details.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do you offer payment plans or financing? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>PTC operates on a pay-as-you-go basis with no large upfront fees. For financing, we recommend AOPA Finance (up to $100,000, $0 down) and Flight Training Finance (pilotfinance.com). See our <a href="financing.html">Financing page</a> for lender options and details. Note: financing is generally only available to US citizens and permanent residents.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What is included in the $65,000 career package? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>The $65,000 Zero-to-Commercial package is all-inclusive: all aircraft rental, all CFI instruction hours, ground school, study materials, all three written exam fees, and all three checkride fees for PPL, Instrument Rating, and Commercial Pilot License. No hidden add-ons. Starting point: zero flight experience required.</p></div>
+        </div>
+      </div>
+
+      <!-- INTERNATIONAL STUDENTS -->
+      <div class="faq-section">
+        <div class="faq-section-title">🌍 International Students</div>
+
+        <div class="faq-item">
+          <button class="faq-q">Can international students train at PTC? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Absolutely. PTC's Part 141 program is TSA/FTSP approved and we issue I-20 forms for students pursuing M-1 student visas. We have trained students from over 17 countries including Saudi Arabia, UAE, Jordan, Morocco, Egypt, and many more. See our <a href="admissions-international.html">International Admissions page</a>.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What visa do international students need? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Most international flight students need an M-1 Vocational Student Visa. You'll need an I-20 from PTC, TSA/FTSP clearance (~$230), and a US Embassy interview. The full process typically takes 2–4 months. See our <a href="international.html">Visa &amp; TSA Guide</a> for step-by-step details and cost breakdown.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Will my FAA license be recognized in my home country? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>FAA certificates are internationally recognized under ICAO. Many countries allow direct conversion of FAA licenses to their national equivalent. Requirements vary — check with your home country's civil aviation authority (CAA) for the specific conversion process.</p></div>
+        </div>
+      </div>
+
+      <!-- BRACKETT AIRPORT -->
+      <div class="faq-section">
+        <div class="faq-section-title">📍 Brackett Airport &amp; Location</div>
+
+        <div class="faq-item">
+          <button class="faq-q">Where exactly is PTC located? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>PTC is located at Brackett Field Airport (FAA identifier: POC) in La Verne, California — approximately 30 miles east of downtown Los Angeles in the San Gabriel Valley. The closest international airport is Ontario International (ONT), about 20 minutes away.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What are the weather conditions like for flying? <span class="faq-chevron">▾</span></button>
+          <div class="faq-a"><p>Southern California offers some of the best flying weather in the United States. La Verne and the San Gabriel Valley see over 300 VFR days per year. The region rarely experiences the weather delays common in other parts of the country, making it ideal for efficient, uninterrupted training.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Still Have Questions?</h2>
+      <p>Our team is happy to answer anything — reach out and we'll get back to you within one business day.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="contact.html" class="btn btn-secondary">Book a Discovery Flight</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>About</h5>
+          <ul>
+            <li><a href="about.html">About PTC</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

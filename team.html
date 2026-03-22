@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team — PTC Pilot Training Center</title>
+  <meta name="description" content="Meet the instructors and staff behind PTC Pilot Training Center at Brackett Airport, La Verne CA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .team-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-light);
+      transition: var(--transition);
+      text-align: center;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .team-avatar {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      object-position: top;
+    }
+    .team-avatar-placeholder {
+      width: 100%;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    .team-body {
+      padding: 1.5rem;
+    }
+    .team-name {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .team-title {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 0.85rem;
+    }
+    .team-bio {
+      color: var(--gray);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .team-certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+    .cert-badge {
+      background: var(--off-white);
+      color: var(--navy);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      border: 1px solid var(--gray-light);
+    }
+    @media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li class="nav-has-dropdown">
+          <a href="programs.html">Programs <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Training</span>
+            <a href="programs.html"><span class="dropdown-icon">📋</span>Programs (141 &amp; 61)</a>
+            <a href="licenses.html"><span class="dropdown-icon">🎓</span>Licenses &amp; Ratings</a>
+            <a href="fleet.html"><span class="dropdown-icon">🛩️</span>Our Fleet</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="tuition.html">Pricing <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Investment</span>
+            <a href="tuition.html"><span class="dropdown-icon">💰</span>Tuition &amp; Pricing</a>
+            <a href="financing.html"><span class="dropdown-icon">💳</span>Financing Options</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="admissions.html">Admissions <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Enrollment</span>
+            <a href="admissions-domestic.html"><span class="dropdown-icon">🇺🇸</span>Domestic Students</a>
+            <a href="admissions-international.html"><span class="dropdown-icon">🌍</span>International Students</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-label">International Resources</span>
+            <a href="international.html"><span class="dropdown-icon">🛂</span>Visa &amp; TSA Guide</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="contact.html">Contact <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Get In Touch</span>
+            <a href="contact.html"><span class="dropdown-icon">✉️</span>Contact Us</a>
+            <a href="about.html"><span class="dropdown-icon">🏫</span>About PTC</a>
+            <a href="team.html" class="active"><span class="dropdown-icon">👨‍✈️</span>Our Team</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-label">Resources</span>
+            <a href="faq.html"><span class="dropdown-icon">❓</span>FAQ</a>
+            <a href="blog.html"><span class="dropdown-icon">📰</span>Blog</a>
+          </div>
+        </li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">The People Behind PTC</span>
+      <h1>Meet Our Team</h1>
+      <p>Experienced, passionate, and dedicated — our instructors and staff live and breathe aviation.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="team-grid">
+
+        <!-- Khalid -->
+        <div class="team-card">
+          <div class="team-avatar-placeholder" style="background: linear-gradient(135deg, #0B1F3A, #1E3A6E);">👨‍✈️</div>
+          <div class="team-body">
+            <div class="team-name">Khalid A.</div>
+            <div class="team-title">Founder &amp; Chief Flight Instructor</div>
+            <p class="team-bio">With over 3,500 hours in the Cessna 172 and a passion for aviation education, Khalid founded PTC to bring world-class flight training to the San Gabriel Valley. A Gold Seal CFI and CFII, he has guided students from 14 countries to their FAA certificates.</p>
+            <div class="team-certs">
+              <span class="cert-badge">ATP</span>
+              <span class="cert-badge">CFI</span>
+              <span class="cert-badge">CFII</span>
+              <span class="cert-badge">MEI</span>
+              <span class="cert-badge">Gold Seal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kareem -->
+        <div class="team-card">
+          <div class="team-avatar-placeholder" style="background: linear-gradient(135deg, #1E3A6E, #1E90FF);">✈️</div>
+          <div class="team-body">
+            <div class="team-name">Kareem S.</div>
+            <div class="team-title">Co-Founder &amp; Director of Operations</div>
+            <p class="team-bio">Kareem oversees daily flight operations, fleet maintenance coordination, and student scheduling at PTC. A Commercial Pilot with an Instrument Rating, he ensures every student gets maximum aircraft availability and a seamless training experience.</p>
+            <div class="team-certs">
+              <span class="cert-badge">CPL</span>
+              <span class="cert-badge">Instrument</span>
+              <span class="cert-badge">Multi-Engine</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sarah -->
+        <div class="team-card">
+          <div class="team-avatar-placeholder" style="background: linear-gradient(135deg, #1a4a7a, #0B1F3A);">🎓</div>
+          <div class="team-body">
+            <div class="team-name">Sarah M.</div>
+            <div class="team-title">Senior Flight Instructor — CFI / CFII</div>
+            <p class="team-bio">Sarah is one of PTC's most sought-after instructors, specializing in instrument training and checkride preparation. She brings a methodical, student-first approach to every lesson, with a 98% first-attempt checkride pass rate among her students.</p>
+            <div class="team-certs">
+              <span class="cert-badge">CFI</span>
+              <span class="cert-badge">CFII</span>
+              <span class="cert-badge">Commercial</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marcus -->
+        <div class="team-card">
+          <div class="team-avatar-placeholder" style="background: linear-gradient(135deg, #0d2d5c, #1E3A6E);">🛩️</div>
+          <div class="team-body">
+            <div class="team-name">Marcus T.</div>
+            <div class="team-title">Flight Instructor — CFI</div>
+            <p class="team-bio">A Southern California native and Brackett Airport regular since childhood, Marcus joined PTC after earning his Commercial certificate here as a student. He specializes in training new students from their discovery flight all the way through solo.</p>
+            <div class="team-certs">
+              <span class="cert-badge">CFI</span>
+              <span class="cert-badge">Commercial</span>
+              <span class="cert-badge">Instrument</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aisha -->
+        <div class="team-card">
+          <div class="team-avatar-placeholder" style="background: linear-gradient(135deg, #0B1F3A, #0d4080);">🌍</div>
+          <div class="team-body">
+            <div class="team-name">Aisha K.</div>
+            <div class="team-title">International Student Coordinator &amp; CFI</div>
+            <p class="team-bio">Aisha is PTC's dedicated support lead for international students. Fluent in English and Arabic, she guides students through the TSA/FTSP process, I-20 applications, and visa documentation — ensuring a smooth arrival and start to training.</p>
+            <div class="team-certs">
+              <span class="cert-badge">CFI</span>
+              <span class="cert-badge">Commercial</span>
+              <span class="cert-badge">Bilingual EN/AR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- James -->
+        <div class="team-card">
+          <div class="team-avatar-placeholder" style="background: linear-gradient(135deg, #132a50, #1E90FF);">⚙️</div>
+          <div class="team-body">
+            <div class="team-name">James R.</div>
+            <div class="team-title">Director of Maintenance &amp; Safety</div>
+            <p class="team-bio">James keeps PTC's fleet of six Cessna 172Ns in peak airworthy condition. An FAA-certificated Airframe &amp; Powerplant mechanic with 15 years on general aviation aircraft, his standards are uncompromising — because safe training starts with a safe aircraft.</p>
+            <div class="team-certs">
+              <span class="cert-badge">A&amp;P Mechanic</span>
+              <span class="cert-badge">IA</span>
+              <span class="cert-badge">15 Yrs Exp.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN THE TEAM -->
+  <section class="section section-gray">
+    <div class="container">
+      <div style="background:var(--navy); border-radius:var(--radius-lg); padding:3rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
+        <div>
+          <p style="color:var(--gold); font-family:var(--font-heading); font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.5rem;">We're Growing</p>
+          <h3 style="color:var(--white); margin-bottom:0.5rem;">Interested in Instructing at PTC?</h3>
+          <p style="color:rgba(255,255,255,0.7); margin:0; max-width:500px; font-size:0.95rem;">PTC is always looking for passionate, certified flight instructors to join our team. If you hold a CFI or CFII and want to teach in the Southern California foothills, we'd love to hear from you.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary" style="flex-shrink:0; font-size:1rem; padding:1rem 2rem;">Get In Touch →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Train With the Best</h2>
+      <p>Our team is here to take you from your first flight to your final checkride — and every lesson in between.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Book a Discovery Flight</a>
+        <a href="about.html" class="btn btn-secondary">About PTC</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>About</h5>
+          <ul>
+            <li><a href="about.html">About PTC</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — PTC Pilot Training Center</title>
+  <meta name="description" content="Aviation tips, student stories, training guides, and news from PTC Pilot Training Center at Brackett Airport, La Verne CA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .blog-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-light);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .blog-card-img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .blog-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+    .blog-category {
+      background: var(--navy);
+      color: var(--gold);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+    }
+    .blog-date {
+      color: var(--gray);
+      font-size: 0.8rem;
+    }
+    .blog-card h3 {
+      color: var(--navy);
+      font-size: 1.05rem;
+      margin-bottom: 0.65rem;
+      line-height: 1.35;
+    }
+    .blog-card p {
+      color: var(--gray);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .blog-read-more {
+      color: var(--sky);
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: gap 0.2s;
+    }
+    .blog-card:hover .blog-read-more { gap: 0.6rem; }
+    .blog-featured {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--gray-light);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 3rem;
+    }
+    .blog-featured-img {
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .blog-featured-body {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .featured-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .blog-featured-body h2 {
+      color: var(--navy);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .blog-featured-body p {
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: repeat(2,1fr); }
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured-img { min-height: 220px; }
+    }
+    @media (max-width: 560px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li class="nav-has-dropdown">
+          <a href="programs.html">Programs <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Training</span>
+            <a href="programs.html"><span class="dropdown-icon">📋</span>Programs (141 &amp; 61)</a>
+            <a href="licenses.html"><span class="dropdown-icon">🎓</span>Licenses &amp; Ratings</a>
+            <a href="fleet.html"><span class="dropdown-icon">🛩️</span>Our Fleet</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="tuition.html">Pricing <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Investment</span>
+            <a href="tuition.html"><span class="dropdown-icon">💰</span>Tuition &amp; Pricing</a>
+            <a href="financing.html"><span class="dropdown-icon">💳</span>Financing Options</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="admissions.html">Admissions <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Enrollment</span>
+            <a href="admissions-domestic.html"><span class="dropdown-icon">🇺🇸</span>Domestic Students</a>
+            <a href="admissions-international.html"><span class="dropdown-icon">🌍</span>International Students</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-label">International Resources</span>
+            <a href="international.html"><span class="dropdown-icon">🛂</span>Visa &amp; TSA Guide</a>
+          </div>
+        </li>
+        <li class="nav-has-dropdown">
+          <a href="contact.html">Contact <span class="nav-chevron">▾</span></a>
+          <div class="dropdown">
+            <span class="dropdown-label">Get In Touch</span>
+            <a href="contact.html"><span class="dropdown-icon">✉️</span>Contact Us</a>
+            <a href="about.html"><span class="dropdown-icon">🏫</span>About PTC</a>
+            <a href="team.html"><span class="dropdown-icon">👨‍✈️</span>Our Team</a>
+            <div class="dropdown-divider"></div>
+            <span class="dropdown-label">Resources</span>
+            <a href="faq.html"><span class="dropdown-icon">❓</span>FAQ</a>
+            <a href="blog.html" class="active"><span class="dropdown-icon">📰</span>Blog</a>
+          </div>
+        </li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">Aviation Insights</span>
+      <h1>PTC Blog</h1>
+      <p>Tips, guides, student stories, and aviation news from the team at Brackett Airport.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- FEATURED POST -->
+      <div class="blog-featured">
+        <img class="blog-featured-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80" alt="The Pilot Shortage" />
+        <div class="blog-featured-body">
+          <span class="featured-badge">✨ Featured</span>
+          <div style="color:var(--gray); font-size:0.82rem; margin-bottom:0.75rem;">March 15, 2025 · Aviation Career</div>
+          <h2>The 2025 Pilot Shortage: Why Right Now Is the Best Time to Earn Your Wings</h2>
+          <p>Airlines are offering signing bonuses, fast-track captain upgrades, and salaries that would have seemed impossible a decade ago. Here's a deep dive into why the pilot shortage is your opportunity — and how to position yourself to take advantage of it.</p>
+          <a href="#" class="btn btn-navy" style="width:fit-content;">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- BLOG GRID -->
+      <div class="blog-grid">
+
+        <div class="blog-card">
+          <img class="blog-card-img" src="https://images.unsplash.com/photo-1559628233-100c798642b4?w=600&q=80" alt="PPL Tips" />
+          <div class="blog-card-body">
+            <div class="blog-meta"><span class="blog-category">Training Tips</span><span class="blog-date">Feb 28, 2025</span></div>
+            <h3>5 Things Every Student Pilot Should Know Before Their First Solo</h3>
+            <p>Solo flight is one of the most exhilarating moments in a pilot's life. Here's what our instructors tell every student before they take the controls alone for the first time.</p>
+            <a href="#" class="blog-read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img class="blog-card-img" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80" alt="International Student Guide" />
+          <div class="blog-card-body">
+            <div class="blog-meta"><span class="blog-category">International</span><span class="blog-date">Feb 10, 2025</span></div>
+            <h3>From Riyadh to Brackett Field: An International Student's Training Journey</h3>
+            <p>Youssef came from Saudi Arabia with a dream and a lot of paperwork. He shares his experience navigating the TSA/FTSP process and earning his Commercial certificate at PTC.</p>
+            <a href="#" class="blog-read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img class="blog-card-img" src="https://images.unsplash.com/photo-1474302771604-ac71b2b2c9ae?w=600&q=80" alt="Part 141 vs Part 61" />
+          <div class="blog-card-body">
+            <div class="blog-meta"><span class="blog-category">Programs</span><span class="blog-date">Jan 22, 2025</span></div>
+            <h3>Part 141 vs. Part 61: Which Training Program Is Right for You?</h3>
+            <p>One of the most common questions we get from new students. We break it down simply — what each program means, who it's best for, and how to decide.</p>
+            <a href="#" class="blog-read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img class="blog-card-img" src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=600&q=80" alt="Instrument Rating Guide" />
+          <div class="blog-card-body">
+            <div class="blog-meta"><span class="blog-category">Training Tips</span><span class="blog-date">Jan 8, 2025</span></div>
+            <h3>Why Your Instrument Rating Is the Most Important Certificate You'll Ever Earn</h3>
+            <p>The IFR rating separates recreational pilots from professionals. Here's what the training involves, why it matters so much, and how to approach it at PTC.</p>
+            <a href="#" class="blog-read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img class="blog-card-img" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="Financing Flight Training" />
+          <div class="blog-card-body">
+            <div class="blog-meta"><span class="blog-category">Financing</span><span class="blog-date">Dec 15, 2024</span></div>
+            <h3>How to Finance Your Flight Training: A Complete 2025 Guide</h3>
+            <p>AOPA Finance, Pilot Finance, Sallie Mae, or pay-as-you-go — we compare every option available to aspiring pilots and explain exactly how to apply.</p>
+            <a href="#" class="blog-read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img class="blog-card-img" src="https://images.unsplash.com/photo-1526234362653-3b75a0c07438?w=600&q=80" alt="Brackett Airport" />
+          <div class="blog-card-body">
+            <div class="blog-meta"><span class="blog-category">About PTC</span><span class="blog-date">Nov 30, 2024</span></div>
+            <h3>Why Brackett Field Is One of the Best Places to Learn to Fly in California</h3>
+            <p>300+ VFR days a year, stunning mountain scenery, and access to LA airspace complexity — here's why Brackett Field (POC) is a world-class training environment.</p>
+            <a href="#" class="blog-read-more">Read More →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER CTA -->
+  <section class="section section-gray">
+    <div class="container" style="max-width:600px; text-align:center;">
+      <div class="section-header">
+        <span class="label">Stay in the Loop</span>
+        <h2>Aviation Updates from PTC</h2>
+        <p>New blog posts, training tips, and PTC news — delivered to your inbox. No spam, ever.</p>
+      </div>
+      <div style="display:flex; gap:0.75rem; max-width:460px; margin:0 auto;">
+        <input type="email" placeholder="your@email.com" style="flex:1; padding:0.85rem 1rem; border:2px solid var(--gray-light); border-radius:var(--radius); font-family:var(--font-body); font-size:0.95rem; outline:none;" />
+        <button class="btn btn-primary">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Start Your Story?</h2>
+      <p>The best blog post we could ever write is the one about your first solo flight. Let's make it happen.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Book a Discovery Flight</a>
+        <a href="faq.html" class="btn btn-secondary">Read the FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>About</h5>
+          <ul>
+            <li><a href="about.html">About PTC</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
