@@ -47,6 +47,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Desktop Dropdown Hover (with close delay so clicks register) ---
+  const closeDelay = 200; // ms before dropdown hides after mouse leaves
+  document.querySelectorAll('.nav-has-dropdown').forEach(item => {
+    let closeTimer = null;
+
+    const open = () => {
+      clearTimeout(closeTimer);
+      // Close all others first
+      document.querySelectorAll('.nav-has-dropdown').forEach(d => {
+        if (d !== item) d.classList.remove('dropdown-open');
+      });
+      item.classList.add('dropdown-open');
+    };
+
+    const close = () => {
+      closeTimer = setTimeout(() => {
+        item.classList.remove('dropdown-open');
+      }, closeDelay);
+    };
+
+    item.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) open();
+    });
+    item.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) close();
+    });
+
+    // Keep open if mouse enters the dropdown itself
+    const dropdown = item.querySelector('.dropdown');
+    if (dropdown) {
+      dropdown.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 768) clearTimeout(closeTimer);
+      });
+      dropdown.addEventListener('mouseleave', () => {
+        if (window.innerWidth > 768) close();
+      });
+    }
+  });
+
   // --- Mobile Dropdown Toggle ---
   document.querySelectorAll('.nav-has-dropdown > a').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
@@ -54,11 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const parent = trigger.closest('.nav-has-dropdown');
         const wasOpen = parent.classList.contains('mobile-open');
-        // Close all others
         document.querySelectorAll('.nav-has-dropdown').forEach(d => d.classList.remove('mobile-open'));
         if (!wasOpen) parent.classList.add('mobile-open');
       }
     });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-has-dropdown')) {
+      document.querySelectorAll('.nav-has-dropdown').forEach(d => d.classList.remove('dropdown-open'));
+    }
   });
 
   // --- Active Nav Link (top-level + dropdowns) ---

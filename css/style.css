@@ -1585,8 +1585,8 @@ p { margin-bottom: 1rem; }
   border-top: 1px solid #e5e7eb;
 }
 
-/* Show on hover */
-.nav-has-dropdown:hover .dropdown {
+/* Shown via JS class instead of pure CSS hover (prevents click-blocking) */
+.nav-has-dropdown.dropdown-open .dropdown {
   display: block;
 }
 
@@ -1664,8 +1664,8 @@ p { margin-bottom: 1rem; }
     display: block;
   }
 
-  /* On desktop hover — override mobile block state */
-  .nav-has-dropdown:hover .dropdown {
+  /* Desktop open state handled by JS */
+  .nav-has-dropdown.dropdown-open .dropdown {
     display: block;
   }
 
@@ -1695,13 +1695,8 @@ p { margin-bottom: 1rem; }
     justify-content: space-between;
   }
 
-  /* Prevent hover-open on mobile (touch devices) */
-  @media (hover: none) {
-    .nav-has-dropdown:hover .dropdown {
-      display: none;
-    }
-    .nav-has-dropdown.mobile-open > .dropdown {
-      display: block;
-    }
+  /* Mobile open handled by JS mobile-open class */
+  .nav-has-dropdown.mobile-open > .dropdown {
+    display: block;
   }
 }
