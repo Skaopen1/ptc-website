@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>International Students — PTC Pilot Training Center</title>
+  <meta name="description" content="PTC welcomes international students from around the world. Learn about the M-1 visa, TSA AFSP process, costs, and everything you need to train in the US." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- Timeline ---- */
+    .intl-timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+    .intl-timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--sky), var(--gold));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -3rem;
+      top: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border: 3px solid var(--sky);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .timeline-item h4 {
+      font-family: var(--font-heading);
+      color: var(--navy);
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-item p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin: 0 0 0.5rem;
+      line-height: 1.7;
+    }
+    .timeline-cost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--off-white);
+      border: 1px solid var(--gray-light);
+      border-radius: 50px;
+      padding: 0.25rem 0.85rem;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .timeline-cost.free { background: rgba(22,163,74,0.08); border-color: rgba(22,163,74,0.3); color: #15803d; }
+    .timeline-cost.paid { background: rgba(245,166,35,0.1); border-color: rgba(245,166,35,0.4); color: #92400e; }
+    .timeline-cost.warning { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.25); color: #b91c1c; }
+    .timeline-tip {
+      background: rgba(30,144,255,0.07);
+      border-left: 3px solid var(--sky);
+      border-radius: 0 6px 6px 0;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+    .timeline-tip strong { color: var(--navy); }
+
+    /* ---- Cost Table ---- */
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .cost-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 1.25rem;
+      text-align: left;
+    }
+    .cost-table td {
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table tr:nth-child(even) td { background: var(--off-white); }
+    .cost-table .total-row td {
+      background: var(--navy) !important;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      border-bottom: none;
+    }
+    .cost-table .total-row .amt { color: var(--gold); font-size: 1.1rem; }
+
+    /* ---- FAQ ---- */
+    .faq-item {
+      border-bottom: 1px solid var(--gray-light);
+      padding: 1.25rem 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--gray-light); }
+    .faq-q {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .faq-q::before { content: 'Q'; color: var(--sky); flex-shrink: 0; }
+    .faq-a {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+
+    /* ---- Countries grid ---- */
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+    }
+    .country-tag {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.9rem;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+    }
+
+    /* ---- Info cards ---- */
+    .info-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--sky);
+    }
+    .info-card.gold { border-left-color: var(--gold); }
+    .info-card.green { border-left-color: #16a34a; }
+    .info-card h4 { color: var(--navy); font-family: var(--font-heading); margin-bottom: 0.6rem; }
+    .info-card p { color: var(--gray); font-size: 0.9rem; margin: 0; line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .intl-timeline { padding-left: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li><a href="licenses.html">Licenses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="fleet.html">Fleet</a></li>
+        <li><a href="tuition.html">Tuition</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="international.html" class="active">International</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero" style="background: linear-gradient(135deg, #0B1F3A 0%, #0d2d5c 60%, #1a3a6e 100%); position: relative; overflow: hidden;">
+    <div class="container" style="position:relative; z-index:1;">
+      <span class="label">🌍 Welcome from Anywhere in the World</span>
+      <h1>International Students</h1>
+      <p>PTC is proud to train pilots from across the globe. Our Part 141 program is fully TSA-approved — here's everything you need to know to fly with us from outside the US.</p>
+    </div>
+    <div style="position:absolute; right:-5rem; top:-3rem; font-size:20rem; opacity:0.03; line-height:1;">🌍</div>
+  </section>
+
+  <!-- WELCOME BANNER -->
+  <section style="background: var(--gold); padding: 1.5rem 0;">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; text-align: center;">
+        <div>
+          <div style="font-family: var(--font-heading); font-weight: 900; font-size: 1.5rem; color: var(--navy);">TSA/FTSP Approved</div>
+          <div style="font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(11,31,58,0.7);">Part 141 Program</div>
+        </div>
+        <div style="width:1px; height:40px; background:rgba(11,31,58,0.2);"></div>
+        <div>
+          <div style="font-family: var(--font-heading); font-weight: 900; font-size: 1.5rem; color: var(--navy);">M-1 Visa Eligible</div>
+          <div style="font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(11,31,58,0.7);">I-20 Issued by PTC</div>
+        </div>
+        <div style="width:1px; height:40px; background:rgba(11,31,58,0.2);"></div>
+        <div>
+          <div style="font-family: var(--font-heading); font-weight: 900; font-size: 1.5rem; color: var(--navy);">Full Support</div>
+          <div style="font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(11,31,58,0.7);">From Enrollment to Wings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP-BY-STEP PROCESS -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+
+        <div>
+          <div style="margin-bottom: 2rem;">
+            <span class="label" style="display:inline-block; margin-bottom:0.75rem;">Your Roadmap</span>
+            <h2 style="color: var(--navy);">Step-by-Step Process</h2>
+            <p style="color: var(--gray);">From your home country to the cockpit at Brackett Airport — here's every step, in order.</p>
+          </div>
+
+          <div class="intl-timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-dot">01</div>
+              <h4>Contact PTC &amp; Get Accepted</h4>
+              <p>Reach out via our contact form or email. We'll review your application and issue an official <strong>Acceptance Letter</strong> — required for your TSA and visa applications.</p>
+              <span class="timeline-cost free">✓ No cost at this stage</span>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">02</div>
+              <h4>Receive Your I-20 Form</h4>
+              <p>PTC will issue your <strong>Form I-20</strong> (Certificate of Eligibility for Nonimmigrant Student Status). This is the document your US Embassy needs to issue your M-1 visa. You must be enrolled in our Part 141 program to receive an I-20.</p>
+              <span class="timeline-cost paid">Fee: ~$150–$350 (I-20 processing)</span>
+              <div class="timeline-tip">📌 <strong>Important:</strong> You must demonstrate proof of sufficient funds to cover full training costs when requesting your I-20.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">03</div>
+              <h4>Apply for TSA / FTSP Clearance</h4>
+              <p>All non-US citizens must complete a <strong>security threat assessment</strong> through the TSA's Flight Training Security Program (FTSP) — formerly AFSP. Apply at <strong>flightschoolcandidates.gov</strong>. PTC must be listed as your training provider.</p>
+              <span class="timeline-cost paid">TSA Fee: ~$130 USD</span>
+              <span class="timeline-cost paid" style="margin-left:0.5rem;">Fingerprinting: ~$100 USD</span>
+              <div class="timeline-tip">⏱ <strong>Processing time:</strong> Typically 3–30 days. US citizens and Canadian citizens may be processed in as little as 3 days. Others may take up to 30 days.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">04</div>
+              <h4>Apply for Your M-1 Student Visa</h4>
+              <p>With your I-20 and TSA clearance in hand, apply for an <strong>M-1 Vocational Student Visa</strong> at your nearest US Embassy or Consulate. Complete the DS-160 form online, pay the visa application fee, and attend your embassy interview.</p>
+              <span class="timeline-cost paid">Visa fee: $185 USD (DS-160)</span>
+              <span class="timeline-cost paid" style="margin-left:0.5rem;">SEVIS fee: $350 USD</span>
+              <div class="timeline-tip">📋 <strong>Bring to your interview:</strong> Valid passport, I-20, DS-160 confirmation, SEVIS receipt, proof of funds, acceptance letter, and ties to your home country.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">05</div>
+              <h4>Book Your Flight to Los Angeles</h4>
+              <p>Once your M-1 visa is approved, you're cleared to travel! Book your flight to <strong>LAX, ONT (Ontario), or SNA</strong> — all within easy reach of Brackett Airport in La Verne, CA. You may enter the US up to 30 days before your program start date.</p>
+              <span class="timeline-cost free">✓ No additional government fees</span>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">06</div>
+              <h4>Arrive, Settle, &amp; Start Training</h4>
+              <p>PTC will help you get oriented — find housing near Brackett Airport, obtain your FAA Medical Certificate from a local Aviation Medical Examiner (AME), get your student pilot certificate, and begin your Part 141 training curriculum.</p>
+              <span class="timeline-cost paid">FAA Medical: ~$75–$150</span>
+              <span class="timeline-cost paid" style="margin-left:0.5rem;">Student pilot cert: Free (online)</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right column: cost table + info cards -->
+        <div>
+          <div style="margin-bottom: 2rem;">
+            <span class="label" style="display:inline-block; margin-bottom:0.75rem;">Cost Summary</span>
+            <h2 style="color: var(--navy);">What to Budget (Pre-Training)</h2>
+            <p style="color: var(--gray);">Before you fly a single hour, here are the government and administrative fees to expect.</p>
+          </div>
+
+          <div style="overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow); margin-bottom: 2rem;">
+            <table class="cost-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Est. Cost (USD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>I-20 Processing Fee (PTC)</td>
+                  <td>~$150–$350</td>
+                </tr>
+                <tr>
+                  <td>TSA / FTSP Security Vetting Fee</td>
+                  <td>~$130</td>
+                </tr>
+                <tr>
+                  <td>Fingerprinting (TSA required)</td>
+                  <td>~$100</td>
+                </tr>
+                <tr>
+                  <td>SEVIS Fee (I-901)</td>
+                  <td>$350</td>
+                </tr>
+                <tr>
+                  <td>DS-160 US Visa Application</td>
+                  <td>$185</td>
+                </tr>
+                <tr>
+                  <td>FAA Medical Certificate (AME)</td>
+                  <td>~$75–$150</td>
+                </tr>
+                <tr>
+                  <td>Student Pilot Certificate (FAA)</td>
+                  <td>Free</td>
+                </tr>
+                <tr class="total-row">
+                  <td><strong>Estimated Total Pre-Training Fees</strong></td>
+                  <td class="amt"><strong>~$990 – $1,265</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="info-card gold">
+              <h4>💰 Proof of Funds Required</h4>
+              <p>When applying for your I-20, you must show a bank statement (dated within 30 days) demonstrating sufficient funds to cover your full training cost — at minimum, the $65,000 career package or your chosen program cost, plus living expenses.</p>
+            </div>
+
+            <div class="info-card green">
+              <h4>🏠 Living in La Verne, CA</h4>
+              <p>La Verne is a safe, quiet city in the San Gabriel Valley east of Los Angeles. Budget approximately <strong>$1,200–$2,000/month</strong> for housing (shared apartments are available), plus food, transportation, and personal expenses. Your total monthly living cost is typically $1,500–$2,500.</p>
+            </div>
+
+            <div class="info-card">
+              <h4>🛂 Visa Duration &amp; Extensions</h4>
+              <p>An M-1 visa is issued for the duration of your program plus 30 days. If your training takes longer than expected, you can apply for an extension through USCIS. PTC will help you with documentation for any required extensions. Do not overstay your visa status.</p>
+            </div>
+
+            <div class="info-card">
+              <h4>📱 What to Do On Arrival</h4>
+              <p>Upon arriving in the US: report to PTC within your program start window, apply for a Social Security Number (optional but useful), open a US bank account, obtain a California State ID or driver's license, and get your FAA Medical Certificate before your first flight.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VISA TYPES EXPLAINED -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Visa Guide</span>
+        <h2>Which Visa Do You Need?</h2>
+        <p>Most international flight students need one of two visa types — here's the difference.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+
+        <div style="background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); border: 2px solid var(--sky);">
+          <div style="background: var(--navy); padding: 1.5rem 2rem;">
+            <div style="font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;">Recommended for Most Students</div>
+            <h3 style="color: var(--white); margin: 0;">M-1 Vocational Student Visa</h3>
+          </div>
+          <div style="padding: 2rem;">
+            <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1.25rem;">The M-1 visa is specifically designed for vocational and non-academic programs — including flight training. This is the standard visa for international students coming to the US specifically to earn their FAA pilot certificates.</p>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:var(--sky); font-weight:700; flex-shrink:0;">✓</span>Issued for duration of program + 30 days</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:var(--sky); font-weight:700; flex-shrink:0;">✓</span>Requires I-20 from PTC (Part 141)</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:var(--sky); font-weight:700; flex-shrink:0;">✓</span>Full-time training required</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:var(--sky); font-weight:700; flex-shrink:0;">✓</span>No work authorization (training only)</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:var(--sky); font-weight:700; flex-shrink:0;">✓</span>Extendable through USCIS</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:var(--sky); font-weight:700; flex-shrink:0;">✓</span>Dependents can apply for M-2 visa</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); border: 2px solid var(--gray-light);">
+          <div style="background: #374151; padding: 1.5rem 2rem;">
+            <div style="font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem;">Alternative Option</div>
+            <h3 style="color: var(--white); margin: 0;">B-1/B-2 Visitor Visa</h3>
+          </div>
+          <div style="padding: 2rem;">
+            <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1.25rem;">Visitors from certain countries may train in the US under a B-1/B-2 visa or visa waiver (ESTA) for limited recreational flight training — but <strong>this is not valid for full career-track programs</strong> like PPL → CPL. Always confirm eligibility with your immigration attorney.</p>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:#d97706; font-weight:700; flex-shrink:0;">⚠</span>Limited — recreational training only</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:#d97706; font-weight:700; flex-shrink:0;">⚠</span>Cannot pursue full career program</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:#d97706; font-weight:700; flex-shrink:0;">⚠</span>TSA FTSP clearance still required</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:#6b7280; font-weight:700; flex-shrink:0;">→</span>No I-20 required for B visa</li>
+              <li style="display:flex; gap:0.6rem; font-size:0.9rem; color:var(--text);"><span style="color:#6b7280; font-weight:700; flex-shrink:0;">→</span>Max stay typically 6 months</li>
+            </ul>
+            <div style="margin-top:1.25rem; padding:0.85rem; background:rgba(239,68,68,0.06); border-radius:6px; border:1px solid rgba(239,68,68,0.2); font-size:0.85rem; color:#b91c1c;">
+              <strong>Not recommended</strong> for students pursuing PPL, IFR, or CPL at PTC. Use M-1 visa instead.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <div class="section-header">
+        <span class="label">Common Questions</span>
+        <h2>International Student FAQ</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need to speak English fluently?</div>
+        <p class="faq-a">The FAA requires all pilots to be able to read, speak, write, and understand English. Radio communications are conducted in English. You don't need to be native-level fluent, but conversational English proficiency is essential for safe and effective training. PTC instructors are patient and supportive.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I bring my family with me?</div>
+        <p class="faq-a">Yes. Dependents (spouse and unmarried children under 21) can apply for an <strong>M-2 visa</strong> to accompany you. You will need to show proof of sufficient funds to support your family in addition to your training costs.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How long does the entire visa process take?</div>
+        <p class="faq-a">From submitting your application to PTC to arriving in the US typically takes <strong>2–4 months</strong>. TSA/FTSP clearance takes 3–30 days. US Embassy visa processing varies by country — some appointments are available within weeks, others take months. Plan ahead and contact PTC early.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Will my FAA license be valid in my home country?</div>
+        <p class="faq-a">FAA certificates are internationally recognized and can often be converted to local licenses in many countries under ICAO agreements. Requirements vary by country — check with your home country's civil aviation authority (CAA). Many countries allow direct conversion of FAA Commercial licenses.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I work as a flight instructor in the US to build hours?</div>
+        <p class="faq-a">M-1 visa holders generally cannot work in the US. However, USCIS may allow <strong>practical training</strong> directly related to your program. Consult an immigration attorney regarding post-completion practical training options. Many international students return home to instruct and build hours after earning their CPL.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What if my visa is denied?</div>
+        <p class="faq-a">Visa denials are not uncommon, but most are resolvable. Common reasons include insufficient proof of funds, weak ties to home country, or incomplete documentation. PTC can help you strengthen your application with proper school documentation. You may reapply after addressing the denial reason.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is La Verne a safe city for international students?</div>
+        <p class="faq-a">Yes — La Verne is consistently ranked as one of the safer cities in the greater Los Angeles area. It's a quiet suburban community with a strong university presence (University of La Verne) and a welcoming environment for international students and residents.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What airport do I fly into?</div>
+        <p class="faq-a">The closest international airports are <strong>Ontario International (ONT)</strong> — just 20 minutes from Brackett Airport — and <strong>Los Angeles International (LAX)</strong>, about 50 minutes away. We recommend ONT for simplicity and cost.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COUNTRIES WELCOME -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Global Community</span>
+        <h2>Students from Around the World</h2>
+        <p style="color: rgba(255,255,255,0.7);">PTC has welcomed aspiring pilots from across the globe. Here are some of the countries our students have come from.</p>
+      </div>
+      <div class="countries-grid">
+        <div class="country-tag">🇸🇦 Saudi Arabia</div>
+        <div class="country-tag">🇦🇪 UAE</div>
+        <div class="country-tag">🇯🇴 Jordan</div>
+        <div class="country-tag">🇲🇦 Morocco</div>
+        <div class="country-tag">🇪🇬 Egypt</div>
+        <div class="country-tag">🇰🇼 Kuwait</div>
+        <div class="country-tag">🇶🇦 Qatar</div>
+        <div class="country-tag">🇲🇽 Mexico</div>
+        <div class="country-tag">🇧🇷 Brazil</div>
+        <div class="country-tag">🇵🇭 Philippines</div>
+        <div class="country-tag">🇰🇷 South Korea</div>
+        <div class="country-tag">🇮🇳 India</div>
+        <div class="country-tag">🇵🇰 Pakistan</div>
+        <div class="country-tag">🇳🇬 Nigeria</div>
+        <div class="country-tag">🇨🇴 Colombia</div>
+        <div class="country-tag">🇻🇳 Vietnam</div>
+        <div class="country-tag">🇹🇷 Turkey</div>
+        <div class="country-tag">And more...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="section section-gray">
+    <div class="container" style="max-width: 800px;">
+      <div style="background: var(--white); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--gray-light); box-shadow: var(--shadow);">
+        <h4 style="color: var(--navy); margin-bottom: 0.75rem;">⚖️ Important Legal Notice</h4>
+        <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.8; margin: 0;">The information on this page is provided for general guidance only and is based on current US government regulations. Visa requirements, TSA fees, and immigration policies are subject to change. <strong>PTC is not an immigration attorney</strong> and cannot provide legal immigration advice. For questions specific to your situation, consult a qualified US immigration attorney. Always verify current requirements with the US Embassy in your country and the official TSA/FTSP website at <strong>flightschoolcandidates.gov</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Start Your Journey to the US?</h2>
+      <p>Contact PTC today and we'll guide you through every step — from acceptance letter to wheels up.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Contact International Admissions</a>
+        <a href="programs.html" class="btn btn-secondary">View Part 141 Program</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 certified flight training for local and international students.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="why-fly.html">Why Fly?</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="fleet.html">Fleet</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="international.html">International</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>International</h5>
+          <ul>
+            <li><a href="international.html">Visa Requirements</a></li>
+            <li><a href="international.html">M-1 Student Visa</a></li>
+            <li><a href="international.html">TSA / FTSP Process</a></li>
+            <li><a href="international.html">Cost Breakdown</a></li>
+            <li><a href="international.html">Student FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>admissions@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
