@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Licenses & Ratings — PTC Pilot Training Center</title>
+  <meta name="description" content="PTC offers 6 FAA licenses and ratings: PPL, CPL, IFR, Multi-Engine, CFI, and CFII. Learn what each certification means and how to earn it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .license-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-light);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .license-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .license-header {
+      background: var(--navy);
+      padding: 2rem;
+      color: var(--white);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .license-num {
+      width: 52px;
+      height: 52px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .license-header-text h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+      color: var(--white);
+    }
+    .license-abbrev {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .license-body {
+      padding: 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .license-body p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .license-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .license-meta-item {
+      background: var(--off-white);
+      padding: 0.75rem;
+      border-radius: var(--radius);
+    }
+    .license-meta-label {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.25rem;
+    }
+    .license-meta-value {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+    .license-perks {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .license-perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .license-perks li:last-child { border-bottom: none; }
+    .license-perks li::before {
+      content: '✓';
+      color: var(--sky);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .licenses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .pathway-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+    .pathway-node {
+      flex-shrink: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pathway-badge {
+      background: var(--navy);
+      color: var(--gold);
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 0.85rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .pathway-badge.highlight {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .pathway-node span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      font-family: var(--font-heading);
+      white-space: nowrap;
+    }
+    .pathway-arrow {
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      padding-bottom: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .licenses-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .licenses-grid { grid-template-columns: 1fr; }
+      .license-meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li><a href="licenses.html" class="active">Licenses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="fleet.html">Fleet</a></li>
+        <li><a href="tuition.html">Tuition</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">FAA Certifications</span>
+      <h1>Licenses &amp; Ratings</h1>
+      <p>PTC offers the complete pathway from zero experience to certified flight instructor. Here's every certificate you can earn with us.</p>
+    </div>
+  </section>
+
+  <!-- CAREER PATHWAY VISUAL -->
+  <section style="background: var(--navy); padding: 2rem 0; overflow: hidden;">
+    <div class="container">
+      <p style="text-align:center; color: rgba(255,255,255,0.5); font-family: var(--font-heading); font-size: 0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom: 1.5rem;">Career Pathway</p>
+      <div class="pathway-track" style="justify-content: center; flex-wrap: wrap; gap: 0.5rem;">
+        <div class="pathway-node">
+          <div class="pathway-badge">PPL</div>
+          <span>Private Pilot</span>
+        </div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">
+          <div class="pathway-badge">IFR</div>
+          <span>Instrument</span>
+        </div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">
+          <div class="pathway-badge">CPL</div>
+          <span>Commercial</span>
+        </div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">
+          <div class="pathway-badge">Multi</div>
+          <span>Multi-Engine</span>
+        </div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">
+          <div class="pathway-badge">CFI</div>
+          <span>Instructor</span>
+        </div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">
+          <div class="pathway-badge highlight">CFII</div>
+          <span>Instrument Instr.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENSE CARDS -->
+  <section class="section">
+    <div class="container">
+      <div class="licenses-grid">
+
+        <!-- PPL -->
+        <div class="license-card">
+          <div class="license-header">
+            <div class="license-num">01</div>
+            <div class="license-header-text">
+              <span class="license-abbrev">PPL · First Certificate</span>
+              <h3>Private Pilot License</h3>
+            </div>
+          </div>
+          <div class="license-body">
+            <p>The gateway to aviation. Your PPL allows you to fly single-engine aircraft solo and carry passengers under visual flight rules (VFR). This is where every pilot's journey begins — and PTC will make yours unforgettable.</p>
+            <div class="license-meta">
+              <div class="license-meta-item">
+                <div class="license-meta-label">Min. Flight Hours</div>
+                <div class="license-meta-value">35–40 hrs</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Est. Duration</div>
+                <div class="license-meta-value">3–5 months</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Min. Age</div>
+                <div class="license-meta-value">17 years</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Medical Required</div>
+                <div class="license-meta-value">3rd Class</div>
+              </div>
+            </div>
+            <ul class="license-perks">
+              <li>Fly solo — you're in command</li>
+              <li>Carry passengers on VFR flights</li>
+              <li>Prerequisite for all advanced ratings</li>
+              <li>Ground school + written exam + checkride</li>
+              <li>Cross-country and night flying included</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Start PPL Training</a>
+          </div>
+        </div>
+
+        <!-- IFR -->
+        <div class="license-card">
+          <div class="license-header">
+            <div class="license-num">02</div>
+            <div class="license-header-text">
+              <span class="license-abbrev">IFR · Instrument Rating</span>
+              <h3>Instrument Rating</h3>
+            </div>
+          </div>
+          <div class="license-body">
+            <p>Fly in clouds, low visibility, and real IFR conditions using only cockpit instruments. The Instrument Rating is the most critical step toward a professional aviation career and dramatically expands where and when you can fly.</p>
+            <div class="license-meta">
+              <div class="license-meta-item">
+                <div class="license-meta-label">Min. Flight Hours</div>
+                <div class="license-meta-value">50 hrs XC (P61)</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Est. Duration</div>
+                <div class="license-meta-value">3–4 months</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Prerequisite</div>
+                <div class="license-meta-value">PPL</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Medical Required</div>
+                <div class="license-meta-value">3rd Class</div>
+              </div>
+            </div>
+            <ul class="license-perks">
+              <li>Fly in IMC — clouds, fog, low visibility</li>
+              <li>Navigate airways using cockpit instruments</li>
+              <li>Required for commercial airline career</li>
+              <li>Approach procedures, holds, SIDs/STARs</li>
+              <li>Dramatically improves flight safety skills</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Start IFR Training</a>
+          </div>
+        </div>
+
+        <!-- CPL -->
+        <div class="license-card">
+          <div class="license-header">
+            <div class="license-num">03</div>
+            <div class="license-header-text">
+              <span class="license-abbrev">CPL · Get Paid to Fly</span>
+              <h3>Commercial Pilot License</h3>
+            </div>
+          </div>
+          <div class="license-body">
+            <p>The license that turns your passion into a profession. A CPL allows you to be compensated for flying — opening doors to airline careers, charter, cargo, banner towing, aerial photography, and more. This is the professional milestone.</p>
+            <div class="license-meta">
+              <div class="license-meta-item">
+                <div class="license-meta-label">Min. Total Hours</div>
+                <div class="license-meta-value">190–250 hrs</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Est. Duration</div>
+                <div class="license-meta-value">4–6 months</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Prerequisite</div>
+                <div class="license-meta-value">PPL + IFR</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Medical Required</div>
+                <div class="license-meta-value">2nd Class</div>
+              </div>
+            </div>
+            <ul class="license-perks">
+              <li>Get paid to fly — legally</li>
+              <li>Higher aircraft performance standards</li>
+              <li>Required for airline first officer position</li>
+              <li>Advanced maneuvers and precision flying</li>
+              <li>Prerequisite for CFI certificate</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Start CPL Training</a>
+          </div>
+        </div>
+
+        <!-- MULTI ENGINE -->
+        <div class="license-card">
+          <div class="license-header">
+            <div class="license-num">04</div>
+            <div class="license-header-text">
+              <span class="license-abbrev">MEL · Multi-Engine Rating</span>
+              <h3>Multi-Engine Rating</h3>
+            </div>
+          </div>
+          <div class="license-body">
+            <p>Expand your capabilities to twin-engine aircraft. The Multi-Engine Rating is essential for airline careers, corporate aviation, and any operation requiring more than one engine. Learn engine-out procedures, asymmetric thrust, and advanced systems.</p>
+            <div class="license-meta">
+              <div class="license-meta-item">
+                <div class="license-meta-label">No Min. Hours</div>
+                <div class="license-meta-value">Proficiency-based</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Est. Duration</div>
+                <div class="license-meta-value">2–4 weeks</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Prerequisite</div>
+                <div class="license-meta-value">PPL or CPL</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Added As</div>
+                <div class="license-meta-value">Rating Add-on</div>
+              </div>
+            </div>
+            <ul class="license-perks">
+              <li>Fly twin-engine aircraft</li>
+              <li>Engine-out emergency procedures</li>
+              <li>Greatly expands hiring eligibility</li>
+              <li>Required for most airline positions</li>
+              <li>Can be added to PPL or CPL certificate</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Start Multi-Engine Training</a>
+          </div>
+        </div>
+
+        <!-- CFI -->
+        <div class="license-card">
+          <div class="license-header">
+            <div class="license-num">05</div>
+            <div class="license-header-text">
+              <span class="license-abbrev">CFI · Certified Flight Instructor</span>
+              <h3>Flight Instructor (CFI)</h3>
+            </div>
+          </div>
+          <div class="license-body">
+            <p>Teach others to fly while building the 1,500 hours needed for airline hiring. The CFI certificate is the most common path to building flight time — and the best way to cement your own skills. Many CFIs instruct right here at PTC.</p>
+            <div class="license-meta">
+              <div class="license-meta-item">
+                <div class="license-meta-label">Min. Total Hours</div>
+                <div class="license-meta-value">250 hrs total</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Est. Duration</div>
+                <div class="license-meta-value">2–3 months</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Prerequisite</div>
+                <div class="license-meta-value">CPL</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Medical Required</div>
+                <div class="license-meta-value">2nd Class</div>
+              </div>
+            </div>
+            <ul class="license-perks">
+              <li>Get paid to build flight hours</li>
+              <li>Teach PPL, solo, and cross-country training</li>
+              <li>Master aviation knowledge at the deepest level</li>
+              <li>Fastest route to 1,500-hour ATP minimum</li>
+              <li>Opportunity to instruct at PTC</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Start CFI Training</a>
+          </div>
+        </div>
+
+        <!-- CFII -->
+        <div class="license-card">
+          <div class="license-header" style="background: linear-gradient(135deg, var(--navy) 0%, #0d2d5c 100%);">
+            <div class="license-num" style="background: var(--sky); color: var(--white);">06</div>
+            <div class="license-header-text">
+              <span class="license-abbrev">CFII · Instrument Instructor</span>
+              <h3>Flight Instructor — Instrument</h3>
+            </div>
+          </div>
+          <div class="license-body">
+            <p>Teach instrument flying. The CFII allows you to instruct students pursuing their Instrument Rating, which is one of the most in-demand CFI positions at flight schools. Higher earning potential and a broader student base.</p>
+            <div class="license-meta">
+              <div class="license-meta-item">
+                <div class="license-meta-label">Prerequisite</div>
+                <div class="license-meta-value">CFI + Instrument Rating</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Est. Duration</div>
+                <div class="license-meta-value">4–8 weeks</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Added As</div>
+                <div class="license-meta-value">Rating Add-on</div>
+              </div>
+              <div class="license-meta-item">
+                <div class="license-meta-label">Exam</div>
+                <div class="license-meta-value">FOI + IGI + Checkride</div>
+              </div>
+            </div>
+            <ul class="license-perks">
+              <li>Teach students their Instrument Rating</li>
+              <li>Higher instructor earning potential</li>
+              <li>Deepen your own instrument proficiency</li>
+              <li>Highly sought after at flight schools</li>
+              <li>Pairs perfectly with CFI certificate</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Start CFII Training</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COST PREVIEW -->
+  <section class="section section-gray">
+    <div class="container" style="text-align: center;">
+      <div class="section-header">
+        <span class="label">Investment</span>
+        <h2>How Much Does It Cost?</h2>
+        <p>Every certificate has a price range. We believe in full transparency — see our complete tuition breakdown.</p>
+      </div>
+      <a href="tuition.html" class="btn btn-navy" style="font-size: 1.05rem; padding: 1rem 2.5rem;">View Full Tuition &amp; Pricing →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Earn Your Wings?</h2>
+      <p>Start with a discovery flight — take the controls, fall in love, and we'll map out your path to certification together.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Book a Discovery Flight</a>
+        <a href="tuition.html" class="btn btn-secondary">See Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 certified flight training for local and international students.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="why-fly.html">Why Fly?</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="fleet.html">Fleet</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Licenses</h5>
+          <ul>
+            <li><a href="licenses.html">Private Pilot (PPL)</a></li>
+            <li><a href="licenses.html">Instrument Rating (IFR)</a></li>
+            <li><a href="licenses.html">Commercial Pilot (CPL)</a></li>
+            <li><a href="licenses.html">Multi-Engine Rating</a></li>
+            <li><a href="licenses.html">CFI / CFII</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Become a Pilot — PTC Pilot Training Center</title>
+  <meta name="description" content="Discover why becoming a pilot is one of the best career decisions you can make. Pilot shortage, high salaries, adventure, freedom — the sky is calling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Why Fly specific styles */
+    .reason-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-light);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .reason-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sky), var(--gold));
+    }
+    .reason-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .reason-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .reason-card h3 {
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+    }
+    .reason-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .stat-impact {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .stat-impact .big-number {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-impact .big-label {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .stat-impact .big-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+    }
+    .salary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .salary-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 1.25rem;
+      text-align: left;
+    }
+    .salary-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--gray-light);
+      color: var(--text);
+    }
+    .salary-table tr:last-child td { border-bottom: none; }
+    .salary-table tr:nth-child(even) td { background: var(--off-white); }
+    .salary-badge {
+      display: inline-block;
+      background: rgba(30,144,255,0.1);
+      color: var(--sky-dark);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+    }
+    .quote-block {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+    }
+    .quote-block::before {
+      content: '"';
+      font-size: 8rem;
+      font-family: Georgia, serif;
+      color: var(--gold);
+      opacity: 0.2;
+      position: absolute;
+      top: -1rem;
+      left: 2rem;
+      line-height: 1;
+    }
+    .quote-block blockquote {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .quote-block cite {
+      color: var(--gold);
+      font-style: normal;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    @media (max-width: 768px) {
+      .reasons-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html" class="active">Why Fly?</a></li>
+        <li><a href="licenses.html">Licenses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="fleet.html">Fleet</a></li>
+        <li><a href="tuition.html">Tuition</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image: none; background: linear-gradient(135deg, #0B1F3A 0%, #0d2d5c 60%, #1a3a6e 100%);">
+    <div class="container">
+      <span class="label">Your Future Awaits</span>
+      <h1>Why Become a Pilot?</h1>
+      <p>The sky isn't the limit — it's just the beginning. Here's why now is the best time in history to earn your wings.</p>
+    </div>
+  </section>
+
+  <!-- IMPACT STATS -->
+  <section class="section section-dark" style="padding: 3rem 0;">
+    <div class="container">
+      <div class="impact-grid">
+        <div class="stat-impact">
+          <div class="big-number">17,000+</div>
+          <div class="big-label">Pilots Needed Annually</div>
+          <div class="big-sub">US airlines alone, every year through 2037</div>
+        </div>
+        <div class="stat-impact">
+          <div class="big-number">$350K+</div>
+          <div class="big-label">Captain Salary</div>
+          <div class="big-sub">Major US airline captains at peak earnings</div>
+        </div>
+        <div class="stat-impact">
+          <div class="big-number">$100K+</div>
+          <div class="big-label">Entry-Level Pay</div>
+          <div class="big-sub">First-year regional airline first officers</div>
+        </div>
+        <div class="stat-impact">
+          <div class="big-number">30yr</div>
+          <div class="big-label">Shortage Forecast</div>
+          <div class="big-sub">Boeing projects 649,000 new pilots needed globally by 2042</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY BECOME A PILOT — REASON CARDS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">6 Compelling Reasons</span>
+        <h2>Why Flying is the Right Choice</h2>
+        <p>From career security to the sheer joy of flight — here's what draws people to the cockpit and keeps them there.</p>
+      </div>
+      <div class="reasons-grid">
+
+        <div class="reason-card">
+          <span class="reason-icon">📈</span>
+          <h3>Record Pilot Demand</h3>
+          <p>The global aviation industry faces its most severe pilot shortage in history. Airlines are competing fiercely for talent — signing bonuses, fast promotions, and guaranteed hiring pathways are now standard. Boeing forecasts a need for <strong>649,000 new pilots globally by 2042</strong>. If you train now, you enter a seller's market.</p>
+        </div>
+
+        <div class="reason-card">
+          <span class="reason-icon">💰</span>
+          <h3>Exceptional Earning Potential</h3>
+          <p>Entry-level regional first officers now earn <strong>$80K–$120K+</strong> per year. Major airline captains routinely earn <strong>$300K–$400K+</strong>. Corporate, charter, and cargo pilots also command strong salaries. Flight instructors earn while they build hours toward airline minimums. The career pays for itself.</p>
+        </div>
+
+        <div class="reason-card">
+          <span class="reason-icon">🌍</span>
+          <h3>See the World</h3>
+          <p>Pilots explore the world as part of the job. Layovers in cities across the globe, discounted or free travel for yourself and your family, and a workplace that's never the same. Whether you're flying domestic routes or international long-haul, no two days look the same from 35,000 feet.</p>
+        </div>
+
+        <div class="reason-card">
+          <span class="reason-icon">🔒</span>
+          <h3>Unmatched Job Security</h3>
+          <p>Aviation is essential infrastructure. Pilots cannot be outsourced or automated in the foreseeable future — the FAA requires a qualified human pilot in every cockpit. Combined with the pilot shortage, job security in this field is among the strongest of any profession today.</p>
+        </div>
+
+        <div class="reason-card">
+          <span class="reason-icon">🏆</span>
+          <h3>Prestige & Personal Achievement</h3>
+          <p>Becoming a pilot is one of the most respected achievements a person can accomplish. It requires discipline, focus, and mastery. Earning your wings is proof that you committed to something hard and saw it through — a mindset that benefits every area of your life.</p>
+        </div>
+
+        <div class="reason-card">
+          <span class="reason-icon">🛩️</span>
+          <h3>Pure Freedom & Joy</h3>
+          <p>Beyond career — flying is simply one of the most extraordinary human experiences. The moment you lift off solo for the first time is something you never forget. Recreational pilots fly for the sheer joy of it. There's nothing quite like commanding an aircraft at altitude, completely free.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section section-gray">
+    <div class="container" style="max-width: 800px;">
+      <div class="quote-block">
+        <blockquote>"Once you have tasted flight, you will forever walk the earth with your eyes turned skyward, for there you have been, and there you will always long to return."</blockquote>
+        <cite>— Leonardo da Vinci</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- SALARY TABLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Career Earnings</span>
+        <h2>What Pilots Earn</h2>
+        <p>Aviation careers offer strong compensation at every stage — from student to captain.</p>
+      </div>
+      <div style="overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden;">
+        <table class="salary-table">
+          <thead>
+            <tr>
+              <th>Career Stage</th>
+              <th>Role</th>
+              <th>Est. Annual Salary</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Early Career</strong></td>
+              <td>Flight Instructor (CFI)</td>
+              <td><span class="salary-badge">$40,000 – $70,000</span></td>
+              <td>Build hours toward airline minimums</td>
+            </tr>
+            <tr>
+              <td><strong>Regional Airlines</strong></td>
+              <td>First Officer</td>
+              <td><span class="salary-badge">$80,000 – $130,000</span></td>
+              <td>After ~1,500 flight hours (ATP cert)</td>
+            </tr>
+            <tr>
+              <td><strong>Regional Airlines</strong></td>
+              <td>Captain</td>
+              <td><span class="salary-badge">$120,000 – $200,000</span></td>
+              <td>3–5 years experience</td>
+            </tr>
+            <tr>
+              <td><strong>Major Airlines</strong></td>
+              <td>First Officer</td>
+              <td><span class="salary-badge">$150,000 – $250,000</span></td>
+              <td>American, Delta, United, Southwest</td>
+            </tr>
+            <tr>
+              <td><strong>Major Airlines</strong></td>
+              <td>Captain</td>
+              <td><span class="salary-badge">$250,000 – $400,000+</span></td>
+              <td>10+ years, widebody aircraft</td>
+            </tr>
+            <tr>
+              <td><strong>Corporate / Charter</strong></td>
+              <td>Pilot</td>
+              <td><span class="salary-badge">$100,000 – $250,000</span></td>
+              <td>Private jets, charter operations</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color: var(--gray); font-size: 0.8rem; margin-top: 1rem; text-align: center;">*Salary estimates are industry averages based on published data. Actual earnings vary by employer, seniority, and aircraft type.</p>
+    </div>
+  </section>
+
+  <!-- CAREER PATH OVERVIEW -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Your Journey</span>
+        <h2>From Student Pilot to Airline Captain</h2>
+        <p style="color:rgba(255,255,255,0.7)">A clear, achievable path — start at PTC, finish at 35,000 feet.</p>
+      </div>
+      <div class="ratings-timeline">
+        <div class="rating-step">
+          <div class="rating-number">01</div>
+          <div class="rating-content">
+            <h4>Get Your PPL at PTC</h4>
+            <p>Start with your Private Pilot License at Brackett Airport. 3–5 months, 35–40 flight hours. This is where it all begins.</p>
+            <div class="rating-meta"><span>~$15,000 – $20,000</span><span>3–5 months</span></div>
+          </div>
+        </div>
+        <div class="rating-step">
+          <div class="rating-number">02</div>
+          <div class="rating-content">
+            <h4>Instrument, Commercial &amp; Instructor Ratings</h4>
+            <p>Continue at PTC through your Instrument Rating, Commercial License, and CFI/CFII certificates. Each step builds skill and hours.</p>
+            <div class="rating-meta"><span>~$30,000 – $50,000</span><span>12–18 months total</span></div>
+          </div>
+        </div>
+        <div class="rating-step">
+          <div class="rating-number">03</div>
+          <div class="rating-content">
+            <h4>Build 1,500 Hours as a CFI</h4>
+            <p>Most pilots become flight instructors to build hours toward the FAA's ATP minimums. Teach at PTC — get paid to reach your goal.</p>
+            <div class="rating-meta"><span>1–2 years</span><span>Earn $40K–$70K while building hours</span></div>
+          </div>
+        </div>
+        <div class="rating-step">
+          <div class="rating-number">04</div>
+          <div class="rating-content">
+            <h4>Regional Airline — First Officer</h4>
+            <p>At 1,500 hours, apply to regional airlines. Expect hiring bonuses, structured captain upgrades, and major airline pathways.</p>
+            <div class="rating-meta"><span>$80K–$130K/yr</span><span>Direct hire pathways available</span></div>
+          </div>
+        </div>
+        <div class="rating-step">
+          <div class="rating-number">05</div>
+          <div class="rating-content">
+            <h4>Major Airline Captain</h4>
+            <p>The destination. After years of experience, upgrade to a major airline captain seat. The career you started at PTC has taken you to the top of aviation.</p>
+            <div class="rating-meta"><span>$250K–$400K+/yr</span><span>The ultimate goal</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Your Runway Is Clear. Are You Ready?</h2>
+      <p>The pilot shortage means there's never been a better time to start. PTC will get you in the air and on your way.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Schedule a Discovery Flight</a>
+        <a href="licenses.html" class="btn btn-secondary">View All Licenses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 certified flight training for local and international students.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="why-fly.html">Why Fly?</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="fleet.html">Fleet</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Programs</h5>
+          <ul>
+            <li><a href="licenses.html">Private Pilot (PPL)</a></li>
+            <li><a href="licenses.html">Instrument Rating (IR)</a></li>
+            <li><a href="licenses.html">Commercial Pilot (CPL)</a></li>
+            <li><a href="licenses.html">Multi-Engine Rating</a></li>
+            <li><a href="licenses.html">CFI / CFII</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuition & Pricing — PTC Pilot Training Center</title>
+  <meta name="description" content="Transparent pricing for all flight training programs at PTC. See costs for PPL, IFR, CPL, Multi-Engine, CFI, and CFII at Brackett Airport, La Verne CA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--gray-light);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card:hover {
+      border-color: var(--sky);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      border-color: var(--gold);
+      position: relative;
+    }
+    .pricing-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+    }
+    .pricing-header {
+      background: var(--navy);
+      padding: 1.75rem 2rem;
+      color: var(--white);
+    }
+    .pricing-abbrev {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .pricing-header h3 {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0;
+    }
+    .pricing-body {
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .price-range {
+      margin-bottom: 1.5rem;
+    }
+    .price-from {
+      font-size: 0.8rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .price-amount {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .price-note {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+    .pricing-breakdown {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .pricing-breakdown li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--gray-light);
+      font-size: 0.9rem;
+    }
+    .pricing-breakdown li:last-child { border-bottom: none; }
+    .pricing-breakdown li .item-name { color: var(--text); }
+    .pricing-breakdown li .item-cost {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.85rem;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .total-box {
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      border: 2px solid var(--gray-light);
+    }
+    .total-box.highlight {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+    .total-label {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+    .total-box.highlight .total-label { color: var(--gold); }
+    .total-amount {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .total-box.highlight .total-amount { color: var(--white); }
+    .total-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    .total-box.highlight .total-desc { color: rgba(255,255,255,0.7); }
+    .totals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .note-box {
+      background: rgba(30, 144, 255, 0.07);
+      border: 1px solid rgba(30, 144, 255, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .note-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .note-box p { color: var(--text); font-size: 0.9rem; margin: 0; line-height: 1.7; }
+    .note-box strong { color: var(--navy); }
+
+    /* Rates table */
+    .rates-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .rates-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 1.25rem;
+      text-align: left;
+    }
+    .rates-table td {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--gray-light);
+      color: var(--text);
+    }
+    .rates-table tr:last-child td { border-bottom: none; }
+    .rates-table tr:nth-child(even) td { background: var(--off-white); }
+
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .totals-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .totals-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">PTC<span>✈</span><small>Pilot Training Center</small></a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why-fly.html">Why Fly?</a></li>
+        <li><a href="licenses.html">Licenses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="fleet.html">Fleet</a></li>
+        <li><a href="tuition.html" class="active">Tuition</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="navbar-cta"><a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary">Student Portal</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">No Hidden Costs</span>
+      <h1>Tuition &amp; Pricing</h1>
+      <p>Full transparency on what flight training costs at PTC. These are estimates based on minimum required hours — your actual cost depends on training pace.</p>
+    </div>
+  </section>
+
+  <!-- HOURLY RATES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Base Rates</span>
+        <h2>Hourly Training Rates</h2>
+        <p>All pricing is pay-as-you-go. No large upfront enrollment fees. Train at your own pace.</p>
+      </div>
+
+      <div style="overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow); margin-bottom: 3rem;">
+        <table class="rates-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Rate</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cessna 172N — Dual (with instructor)</strong></td>
+              <td><strong>Contact for pricing</strong></td>
+              <td>Instructor + aircraft block rate</td>
+            </tr>
+            <tr>
+              <td><strong>Cessna 172N — Solo (student)</strong></td>
+              <td><strong>Contact for pricing</strong></td>
+              <td>Aircraft rental only, solo endorsed</td>
+            </tr>
+            <tr>
+              <td><strong>Flight Instructor (CFI/CFII)</strong></td>
+              <td><strong>Contact for pricing</strong></td>
+              <td>Per flight hour</td>
+            </tr>
+            <tr>
+              <td><strong>Ground Instruction</strong></td>
+              <td><strong>Contact for pricing</strong></td>
+              <td>Per hour, includes pre/post flight brief</td>
+            </tr>
+            <tr>
+              <td><strong>Discovery Flight</strong></td>
+              <td><strong>$199</strong></td>
+              <td>~1 hour, includes instructor and aircraft</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note-box">
+        <span class="note-icon">💡</span>
+        <p><strong>Note on pricing:</strong> Aircraft rental and instructor rates vary. Contact PTC directly for our current hourly rates. All estimates below are based on <strong>industry-average SoCal pricing</strong> to help you budget. Your actual cost may be lower or higher depending on training pace and hours required.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE PRICING CARDS -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Per Certificate</span>
+        <h2>Estimated Training Costs</h2>
+        <p>What to budget for each license or rating. Prices include estimated aircraft, instructor, and testing fees.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card featured">
+          <div class="pricing-header">
+            <div class="pricing-abbrev">PPL · Private Pilot License</div>
+            <h3>Private Pilot</h3>
+          </div>
+          <div class="pricing-body">
+            <div class="price-range">
+              <div class="price-from">Starting From</div>
+              <div class="price-amount">$15,000</div>
+              <div class="price-note">Estimated range: $15,000 – $22,000</div>
+            </div>
+            <ul class="pricing-breakdown">
+              <li><span class="item-name">Aircraft rental (35–40 hrs)</span><span class="item-cost">~$11,000</span></li>
+              <li><span class="item-name">Instructor fees</span><span class="item-cost">~$2,500</span></li>
+              <li><span class="item-name">Ground school / books</span><span class="item-cost">~$500</span></li>
+              <li><span class="item-name">Written test fee</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">Checkride (DPE)</span><span class="item-cost">~$700</span></li>
+              <li><span class="item-name">FAA Medical</span><span class="item-cost">~$150</span></li>
+            </ul>
+            <a href="contact.html" class="btn btn-navy" style="text-align:center;">Get Exact Quote</a>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-abbrev">IFR · Instrument Rating</div>
+            <h3>Instrument Rating</h3>
+          </div>
+          <div class="pricing-body">
+            <div class="price-range">
+              <div class="price-from">Starting From</div>
+              <div class="price-amount">$10,000</div>
+              <div class="price-note">Estimated range: $10,000 – $16,000</div>
+            </div>
+            <ul class="pricing-breakdown">
+              <li><span class="item-name">Aircraft rental (40+ hrs)</span><span class="item-cost">~$7,000</span></li>
+              <li><span class="item-name">Instructor fees</span><span class="item-cost">~$2,000</span></li>
+              <li><span class="item-name">Ground / study materials</span><span class="item-cost">~$400</span></li>
+              <li><span class="item-name">Written test fee</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">Checkride (DPE)</span><span class="item-cost">~$700</span></li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Get Exact Quote</a>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-abbrev">CPL · Commercial Pilot</div>
+            <h3>Commercial Pilot</h3>
+          </div>
+          <div class="pricing-body">
+            <div class="price-range">
+              <div class="price-from">Starting From</div>
+              <div class="price-amount">$15,000</div>
+              <div class="price-note">Estimated range: $15,000 – $25,000</div>
+            </div>
+            <ul class="pricing-breakdown">
+              <li><span class="item-name">Aircraft rental (add'l hours)</span><span class="item-cost">~$12,000</span></li>
+              <li><span class="item-name">Instructor fees</span><span class="item-cost">~$2,000</span></li>
+              <li><span class="item-name">Study materials</span><span class="item-cost">~$300</span></li>
+              <li><span class="item-name">Written test fee</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">Checkride (DPE)</span><span class="item-cost">~$800</span></li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Get Exact Quote</a>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-abbrev">MEL · Multi-Engine Rating</div>
+            <h3>Multi-Engine Rating</h3>
+          </div>
+          <div class="pricing-body">
+            <div class="price-range">
+              <div class="price-from">Starting From</div>
+              <div class="price-amount">$4,500</div>
+              <div class="price-note">Estimated range: $4,500 – $8,000</div>
+            </div>
+            <ul class="pricing-breakdown">
+              <li><span class="item-name">Multi-engine aircraft rental</span><span class="item-cost">~$3,500</span></li>
+              <li><span class="item-name">Instructor fees</span><span class="item-cost">~$600</span></li>
+              <li><span class="item-name">Written test (AGI/written)</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">Checkride (DPE)</span><span class="item-cost">~$700</span></li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Get Exact Quote</a>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-abbrev">CFI · Flight Instructor</div>
+            <h3>CFI Certificate</h3>
+          </div>
+          <div class="pricing-body">
+            <div class="price-range">
+              <div class="price-from">Starting From</div>
+              <div class="price-amount">$5,000</div>
+              <div class="price-note">Estimated range: $5,000 – $10,000</div>
+            </div>
+            <ul class="pricing-breakdown">
+              <li><span class="item-name">Aircraft rental (training hrs)</span><span class="item-cost">~$3,500</span></li>
+              <li><span class="item-name">CFI prep / instructor</span><span class="item-cost">~$1,500</span></li>
+              <li><span class="item-name">FOI written test</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">FIA written test</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">Checkride (DPE)</span><span class="item-cost">~$800</span></li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Get Exact Quote</a>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-abbrev">CFII · Instrument Instructor</div>
+            <h3>CFII Add-On</h3>
+          </div>
+          <div class="pricing-body">
+            <div class="price-range">
+              <div class="price-from">Starting From</div>
+              <div class="price-amount">$4,000</div>
+              <div class="price-note">Estimated range: $4,000 – $7,000</div>
+            </div>
+            <ul class="pricing-breakdown">
+              <li><span class="item-name">Aircraft rental (training hrs)</span><span class="item-cost">~$2,500</span></li>
+              <li><span class="item-name">CFII prep / instructor</span><span class="item-cost">~$1,000</span></li>
+              <li><span class="item-name">IGI written test</span><span class="item-cost">~$175</span></li>
+              <li><span class="item-name">Checkride (DPE)</span><span class="item-cost">~$700</span></li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="text-align:center;">Get Exact Quote</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TOTAL COST PACKAGES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Full Career Path</span>
+        <h2>Total Investment Estimates</h2>
+        <p>Planning your full aviation career? Here's what the complete journey looks like end-to-end.</p>
+      </div>
+
+      <div class="totals-grid">
+        <div class="total-box">
+          <div class="total-label">PPL Only</div>
+          <div class="total-amount">$15–22K</div>
+          <div class="total-desc">Private Pilot License. Fly for fun, fly with family.</div>
+        </div>
+        <div class="total-box">
+          <div class="total-label">PPL + IFR + CPL</div>
+          <div class="total-amount">$40–60K</div>
+          <div class="total-desc">Commercial career foundation. Opens airline pathways.</div>
+        </div>
+        <div class="total-box highlight">
+          <div class="total-label">Full Career Package</div>
+          <div class="total-amount">$55–80K</div>
+          <div class="total-desc">PPL → IFR → CPL → Multi → CFI → CFII. Zero to airline-ready.</div>
+        </div>
+      </div>
+
+      <div class="note-box" style="margin-bottom: 1.5rem;">
+        <span class="note-icon">⚠️</span>
+        <p><strong>Important disclaimer:</strong> All costs shown are <strong>estimates based on industry averages for Southern California</strong>. Actual costs depend on your individual training pace, the number of flight hours required to meet FAA minimums, and PTC's current hourly rates. Contact us for an accurate personalized quote.</p>
+      </div>
+      <div class="note-box">
+        <span class="note-icon">💳</span>
+        <p><strong>Payment:</strong> PTC operates on a pay-as-you-go basis. No large upfront payments are required to begin training. Contact us to discuss payment options and any available financing resources.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT PORTAL CALLOUT -->
+  <section class="section section-gray">
+    <div class="container">
+      <div style="background: var(--navy); border-radius: var(--radius-lg); padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+        <div>
+          <p style="color: var(--gold); font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem;">Current Students</p>
+          <h3 style="color: var(--white); margin-bottom: 0.5rem;">Access Your Flight Schedule</h3>
+          <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem;">Log in to Flight Schedule Pro to book aircraft, view your training record, and coordinate with your instructor.</p>
+        </div>
+        <a href="#FLIGHT_SCHEDULE_PRO_URL" class="btn btn-primary" style="white-space: nowrap; font-size: 1rem; padding: 1rem 2rem; flex-shrink: 0;">
+          🗓️ Open Student Portal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Invest in Your Future?</h2>
+      <p>Contact PTC for exact current pricing and to find out what getting started looks like for you.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-primary">Get a Custom Quote</a>
+        <a href="licenses.html" class="btn btn-secondary">View All Licenses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">PTC<span>✈</span></a>
+          <p>Pilot Training Center at Brackett Airport, La Verne, CA. Part 141 &amp; Part 61 certified flight training for local and international students.</p>
+          <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">▶️</a><a href="#">💼</a></div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="why-fly.html">Why Fly?</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="fleet.html">Fleet</a></li>
+            <li><a href="tuition.html">Tuition</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Licenses</h5>
+          <ul>
+            <li><a href="licenses.html">Private Pilot (PPL)</a></li>
+            <li><a href="licenses.html">Instrument Rating (IFR)</a></li>
+            <li><a href="licenses.html">Commercial Pilot (CPL)</a></li>
+            <li><a href="licenses.html">Multi-Engine Rating</a></li>
+            <li><a href="licenses.html">CFI / CFII</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><span class="icon">📍</span><span>Brackett Airport (POC)<br />La Verne, CA 91750</span></div>
+          <div class="footer-contact-item"><span class="icon">📞</span><span>(909) 000-0000</span></div>
+          <div class="footer-contact-item"><span class="icon">✉️</span><span>info@ptcflightschool.com</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PTC Pilot Training Center. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
