@@ -1542,18 +1542,28 @@ p { margin-bottom: 1rem; }
 .dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
   min-width: 210px;
-  padding: 0.5rem 0;
+  padding: 1rem 0 0.5rem; /* top padding acts as the invisible bridge */
   z-index: 9999;
   border: 1px solid #e5e7eb;
-  /* subtle slide */
   animation: dropIn 0.18s ease;
+}
+
+/* Invisible bridge: extends hover area upward so mouse doesn't lose hover crossing the gap */
+.dropdown::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
 }
 
 @keyframes dropIn {
