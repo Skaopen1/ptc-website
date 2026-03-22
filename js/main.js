@@ -9,15 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
   }
 
-  // --- Mobile Menu Toggle ---
+  // --- Mobile Hamburger Toggle ---
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('.navbar-menu');
 
@@ -28,13 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
     });
 
-    // Close on link click
+    // Close on non-dropdown link click
     navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+      if (!link.closest('.nav-has-dropdown') || link.closest('.dropdown')) {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('open');
+          document.body.style.overflow = '';
+          // Close all mobile dropdowns
+          navMenu.querySelectorAll('.nav-has-dropdown').forEach(d => d.classList.remove('mobile-open'));
+        });
+      }
     });
 
     // Close on outside click
@@ -47,12 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Active Nav Link ---
+  // --- Mobile Dropdown Toggle ---
+  document.querySelectorAll('.nav-has-dropdown > a').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const parent = trigger.closest('.nav-has-dropdown');
+        const wasOpen = parent.classList.contains('mobile-open');
+        // Close all others
+        document.querySelectorAll('.nav-has-dropdown').forEach(d => d.classList.remove('mobile-open'));
+        if (!wasOpen) parent.classList.add('mobile-open');
+      }
+    });
+  });
+
+  // --- Active Nav Link (top-level + dropdowns) ---
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.navbar-menu a').forEach(link => {
     const href = link.getAttribute('href');
     if (href === currentPage || (currentPage === '' && href === 'index.html')) {
       link.classList.add('active');
+      // Also mark parent dropdown trigger as active
+      const parentDropdown = link.closest('.nav-has-dropdown');
+      if (parentDropdown) {
+        parentDropdown.querySelector(':scope > a').classList.add('active');
+      }
     }
   });
 
@@ -68,24 +87,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- Scroll Reveal Animation ---
-  const revealElements = document.querySelectorAll('.program-card, .feature-block, .fleet-card, .testimonial-card, .rating-step, .step-item');
+  const revealEls = document.querySelectorAll(
+    '.program-card, .feature-block, .fleet-card, .testimonial-card, .rating-step, .step-item, .lender-card, .path-card, .pricing-card, .reason-card, .license-card'
+  );
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        revealObserver.unobserve(entry.target);
-      }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      observer.observe(el);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  revealElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    revealObserver.observe(el);
-  });
+  }
 
   // --- Contact Form Handler ---
   const contactForm = document.querySelector('#contact-form');
@@ -93,45 +116,19 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('button[type="submit"]');
+      const orig = btn.textContent;
       btn.textContent = '✓ Message Sent!';
       btn.style.background = '#16a34a';
       btn.style.borderColor = '#16a34a';
       btn.disabled = true;
       setTimeout(() => {
-        btn.textContent = 'Send Message';
+        btn.textContent = orig;
         btn.style.background = '';
         btn.style.borderColor = '';
         btn.disabled = false;
         contactForm.reset();
       }, 3500);
     });
-  }
-
-  // --- Stats Counter Animation ---
-  const statsBar = document.querySelector('.stats-bar');
-  if (statsBar) {
-    const counters = statsBar.querySelectorAll('[data-count]');
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-count'));
-            let current = 0;
-            const increment = Math.ceil(target / 40);
-            const timer = setInterval(() => {
-              current += increment;
-              if (current >= target) {
-                current = target;
-                clearInterval(timer);
-              }
-              counter.textContent = current + (counter.dataset.suffix || '');
-            }, 40);
-          });
-          statsObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-    statsObserver.observe(statsBar);
   }
 
 });
